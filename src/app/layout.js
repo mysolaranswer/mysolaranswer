@@ -1,6 +1,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
+import { Navbar } from "./components/layout/Navbar";
+import { Footer } from "./components/layout/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -9,9 +11,9 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "MySolarAnswer — Solar Calculators & Tools Coming Soon",
+  title: "MySolarAnswer — Free Solar Calculators",
   description:
-    "MySolarAnswer is launching soon — free solar calculators to help you size batteries, calculate ROI, design off-grid systems, and save money with solar.",
+    "Free solar calculators to help you size batteries, calculate ROI, design off-grid systems, and save money with solar.",
   keywords: [
     "solar calculator",
     "solar battery calculator",
@@ -22,9 +24,9 @@ export const metadata = {
   ],
   authors: [{ name: "MySolarAnswer" }],
   openGraph: {
-    title: "MySolarAnswer — Solar Calculators & Tools Coming Soon",
+    title: "MySolarAnswer — Free Solar Calculators",
     description:
-      "Free solar calculators launching soon. Size your battery bank, calculate ROI, design off-grid systems and more.",
+      "Free solar calculators. Size your battery bank, calculate ROI, design off-grid systems and more.",
     url: "https://mysolaranswer.com",
     siteName: "MySolarAnswer",
     type: "website",
@@ -32,9 +34,9 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@mysolaranswer",
-    title: "MySolarAnswer — Solar Calculators Coming Soon",
+    title: "MySolarAnswer — Free Solar Calculators",
     description:
-      "Free solar calculators launching soon. Size your battery bank, calculate ROI, and more.",
+      "Free solar calculators. Size your battery bank, calculate ROI, and more.",
   },
   robots: {
     index: true,
@@ -45,8 +47,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} h-full`}>
-      <body className="min-h-full flex flex-col">
-        {children}
+      <body className="min-h-full flex flex-col font-sans bg-gray-50 text-gray-900">
+        <Navbar />
+        <main className="flex-grow">
+          {children}
+        </main>
+        <Footer />
         <Analytics />
       </body>
     </html>
