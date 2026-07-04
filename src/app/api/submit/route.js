@@ -1,5 +1,6 @@
-// src/app/api/subscribe/route.js
-// Vercel Serverless Function — runs on the server, never exposes your webhook URL to the browser.
+// src/app/api/submit/route.js
+// Vercel Serverless Function — proxies email to Make.com webhook.
+// Webhook URL + API Key are server-only env vars — never exposed to the browser.
 
 import { NextResponse } from "next/server";
 
@@ -8,7 +9,7 @@ export async function POST(request) {
     const body = await request.json();
     const { email } = body;
 
-    // ── 1. Basic validation ──────────────────────────────────────────────────
+    // ── 1. Input validation ──────────────────────────────────────────────────
     if (!email || typeof email !== "string") {
       return NextResponse.json(
         { error: "Email is required." },
@@ -26,23 +27,24 @@ export async function POST(request) {
       );
     }
 
-    // ── 2. Check env var is set ──────────────────────────────────────────────
+    // ── 2. Verify env vars are set ───────────────────────────────────────────
     const webhookUrl = process.env.MAKE_WEBHOOK_URL;
+    const apiKey = process.env.MAKE_API_KEY;
 
-    if (!webhookUrl) {
-      console.error("MAKE_WEBHOOK_URL environment variable is not set.");
+    if (!webhookUrl || !apiKey) {
+      console.error("Missing env vars: MAKE_WEBHOOK_URL or MAKE_API_KEY");
       return NextResponse.json(
         { error: "Server configuration error. Please try again later." },
         { status: 500 }
       );
     }
 
-    // ── 3. Forward to Make.com webhook ──────────────────────────────────────
-    // Make receives a JSON body — you can map any fields inside Make.
+    // ── 3. Forward to Make.com webhook with API key in Authorization header ──
     const makeResponse = await fetch(webhookUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "x-make-apikey": apiKey,
       },
       body: JSON.stringify({
         email: trimmedEmail,
@@ -51,11 +53,8 @@ export async function POST(request) {
       }),
     });
 
-    // Make webhooks return 200 on success (body is usually "Accepted")
     if (!makeResponse.ok) {
-      console.error(
-        `Make webhook returned status ${makeResponse.status}`
-      );
+      console.error(`Make webhook returned status ${makeResponse.status}`);
       return NextResponse.json(
         { error: "Subscription failed. Please try again." },
         { status: 502 }
@@ -68,7 +67,7 @@ export async function POST(request) {
       { status: 200 }
     );
   } catch (error) {
-    console.error("Subscribe API error:", error);
+    console.error("Submit API error:", error);
     return NextResponse.json(
       { error: "An unexpected error occurred. Please try again." },
       { status: 500 }
