@@ -9,6 +9,7 @@ import {
   CircleDollarSign, 
   Plus
 } from "lucide-react";
+import { EmailCapture } from "@/app/components/home/EmailCapture";
 
 export default function ComingSoonPage() {
   return (
@@ -39,12 +40,20 @@ export default function ComingSoonPage() {
           </h1>
           
           {/* Subtitle */}
-          <p className="text-lg md:text-xl text-gray-500 font-medium tracking-wide mb-10 md:mb-12 animate-fade-in-up" style={{ animationDelay: "0.3s", opacity: 0 }}>
+          <p className="text-lg md:text-xl text-gray-500 font-medium tracking-wide mb-8 animate-fade-in-up" style={{ animationDelay: "0.3s", opacity: 0 }}>
               The math behind solar. Simplified.
           </p>
 
+          {/* Email Capture */}
+          <div className="w-full max-w-md animate-fade-in-up mb-10 md:mb-12" style={{ animationDelay: "0.4s", opacity: 0 }}>
+            <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4 text-center">
+              Get notified when we launch
+            </p>
+            <EmailCapture />
+          </div>
+
           {/* Tools Section */}
-          <div className="w-full animate-fade-in-up" style={{ animationDelay: "0.4s", opacity: 0 }}>
+          <div className="w-full animate-fade-in-up" style={{ animationDelay: "0.5s", opacity: 0 }}>
             <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-5 md:mb-6">
               Tools We're Building
             </p>
@@ -67,7 +76,7 @@ export default function ComingSoonPage() {
         </main>
 
         {/* Bottom Footer Section */}
-        <div className="flex flex-col items-center gap-6 z-20 animate-fade-in-up w-full" style={{ animationDelay: "0.5s", opacity: 0 }}>
+        <div className="flex flex-col items-center gap-6 z-20 animate-fade-in-up w-full" style={{ animationDelay: "0.6s", opacity: 0 }}>
           
           {/* Social Icons Row */}
           <div className="flex items-center justify-center gap-7 md:gap-10">
