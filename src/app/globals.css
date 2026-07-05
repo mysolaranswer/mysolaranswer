@@ -1,8 +1,144 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy: #0D1B2A;
+  --font-sans: var(--font-plus-jakarta-sans);
+  --font-inter: var(--font-inter);
+  
   --color-amber: #D4A017;
+  --color-navy: #0D1B2A;
+  --color-white: #FFFFFF;
+  --color-black: #111111;
+}
+
+@layer base {
+  :root {
+    /* Semantic Colors */
+    --bg-page: var(--color-white);
+    --bg-dark-section: var(--color-navy);
+    --bg-footer: var(--color-navy);
+    --bg-card-on-white: var(--color-white);
+    --bg-card-on-navy: rgba(13, 27, 42, 0.8);
+
+    --text-body-on-white: var(--color-black);
+    --text-body-on-navy: rgba(255, 255, 255, 0.8);
+    --text-h-on-white: var(--color-black);
+    --text-h-on-navy: var(--color-white);
+    
+    --bg-primary-cta: var(--color-amber);
+    --text-primary-cta: var(--color-black);
+    --bg-secondary-btn: var(--color-navy);
+    --text-secondary-btn: var(--color-white);
+
+    --border-divider: rgba(17, 17, 17, 0.1);
+    --border-divider-on-navy: rgba(255, 255, 255, 0.15);
+
+    /* Typography Sizes */
+    --font-size-h1-desktop: 68px;
+    --font-size-h1-tablet: 54px;
+    --font-size-h1-mobile: 40px;
+    
+    --font-size-h2-desktop: 48px;
+    --font-size-h2-tablet: 38px;
+    --font-size-h2-mobile: 32px;
+    
+    --font-size-h3-desktop: 32px;
+    --font-size-h3-tablet: 26px;
+    --font-size-h3-mobile: 20px;
+    
+    --font-size-h4: 22px;
+    
+    --font-size-body-large-desktop: 20px;
+    --font-size-body-large-mobile: 16px;
+    
+    --font-size-body-regular: 16px;
+    --font-size-label: 14px;
+  }
+
+  body {
+    background-color: var(--bg-page);
+    color: var(--text-body-on-white);
+    font-family: var(--font-sans);
+  }
+
+  /* Headings Typography */
+  h1, .h1 {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    text-transform: capitalize;
+    letter-spacing: -2px;
+    line-height: 1.1;
+    font-size: var(--font-size-h1-mobile);
+    color: var(--text-h-on-white);
+  }
+  @media (min-width: 768px) { h1, .h1 { font-size: var(--font-size-h1-tablet); } }
+  @media (min-width: 1024px) { h1, .h1 { font-size: var(--font-size-h1-desktop); } }
+
+  h2, .h2 {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    text-transform: capitalize;
+    letter-spacing: -1px;
+    line-height: 1.2;
+    font-size: var(--font-size-h2-mobile);
+    color: var(--text-h-on-white);
+  }
+  @media (min-width: 768px) { h2, .h2 { font-size: var(--font-size-h2-tablet); } }
+  @media (min-width: 1024px) { h2, .h2 { font-size: var(--font-size-h2-desktop); } }
+
+  h3, .h3 {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    text-transform: capitalize;
+    letter-spacing: 0;
+    line-height: 1.4;
+    font-size: var(--font-size-h3-mobile);
+    color: var(--text-h-on-white);
+  }
+  @media (min-width: 768px) { h3, .h3 { font-size: var(--font-size-h3-tablet); } }
+  @media (min-width: 1024px) { h3, .h3 { font-size: var(--font-size-h3-desktop); } }
+
+  h4, .h4 {
+    font-family: var(--font-inter);
+    font-weight: 700;
+    text-transform: capitalize;
+    letter-spacing: -0.04em;
+    line-height: 1.4;
+    font-size: var(--font-size-h4);
+  }
+
+  /* Body Text */
+  .body-large {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.5;
+    font-size: var(--font-size-body-large-mobile);
+  }
+  @media (min-width: 768px) { .body-large { font-size: var(--font-size-body-large-desktop); } }
+
+  p, .body-regular {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.4;
+    font-size: var(--font-size-body-regular);
+  }
+
+  .label {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    line-height: 1.4;
+    font-size: var(--font-size-label);
+  }
+
+  /* Dark section overrides */
+  .dark-section {
+    background-color: var(--bg-dark-section);
+    color: var(--text-body-on-navy);
+  }
+  .dark-section h1, .dark-section .h1, 
+  .dark-section h2, .dark-section .h2, 
+  .dark-section h3, .dark-section .h3 {
+    color: var(--text-h-on-navy);
+  }
 }
 
 @layer utilities {

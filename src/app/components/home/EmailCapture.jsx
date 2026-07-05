@@ -84,11 +84,11 @@ export function EmailCapture() {
             type="submit"
             disabled={status === "loading" || !email.trim()}
             className="
-              px-6 py-3 rounded-xl bg-navy text-white text-sm font-bold 
-              hover:bg-slate-800 active:scale-95 transition-all
+              px-6 py-3 rounded-xl bg-amber text-black label
+              hover:opacity-90 active:scale-95 transition-all
               disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100
               flex items-center justify-center gap-2 whitespace-nowrap
-              min-w-[130px]
+              min-w-[130px] shadow-sm
             "
           >
             {status === "loading" ? (

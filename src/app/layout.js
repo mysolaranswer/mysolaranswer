@@ -1,6 +1,8 @@
-import { Inter } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
+import { Navbar } from "@/app/components/layout/Navbar";
+import { Footer } from "@/app/components/layout/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -8,10 +10,18 @@ const inter = Inter({
   display: "swap",
 });
 
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-plus-jakarta-sans",
+  display: "swap",
+});
+
 export const metadata = {
-  title: "MySolarAnswer — Solar Calculators & Tools Coming Soon",
-  description:
-    "MySolarAnswer is launching soon — free solar calculators to help you size batteries, calculate ROI, design off-grid systems, and save money with solar.",
+  title: {
+    template: "%s | MySolarAnswer",
+    default: "MySolarAnswer — Solar Calculators & Tools",
+  },
+  description: "Free solar calculators for panels, battery, ROI, off-grid & more. Calculate your solar system size, savings, and payback period instantly.",
   keywords: [
     "solar calculator",
     "solar battery calculator",
@@ -44,10 +54,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} h-full`}>
-      <body className="min-h-full flex flex-col">
-        {children}
+    <html lang="en" className={`${inter.variable} ${plusJakartaSans.variable} h-full`}>
+      <body className="min-h-full flex flex-col font-sans">
+        <Navbar />
+        <main className="flex-1">
+          {children}
+        </main>
         <Analytics />
+        <Footer />
       </body>
     </html>
   );
