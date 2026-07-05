@@ -41,7 +41,7 @@ export function FAQSection() {
             return (
               <div 
                 key={idx} 
-                className={`border border-[var(--border-divider)] rounded-2xl overflow-hidden transition-all ${isOpen ? 'bg-navy' : 'bg-white hover:border-amber/50'}`}
+                className={`border border-[var(--border-divider)] overflow-hidden transition-all ${isOpen ? 'bg-navy' : 'bg-white hover:border-amber/50'}`}
               >
                 <button 
                   onClick={() => setOpenIdx(isOpen ? -1 : idx)}

@@ -42,17 +42,17 @@ export function CalculatorsGridSection() {
             <Link 
               key={idx} 
               href={calc.href}
-              className="flex flex-col md:flex-row gap-6 p-8 rounded-3xl bg-[var(--bg-card-on-white)] border border-[var(--border-divider)] hover:border-amber hover:shadow-[0_8px_30px_rgba(245,158,11,0.12)] transition-all group"
+              className="flex flex-row md:flex-col gap-4 md:gap-6 p-6 md:p-8 bg-[var(--bg-card-on-white)] border border-[var(--border-divider)] hover:border-amber hover:shadow-[0_8px_30px_rgba(245,158,11,0.12)] transition-all group"
             >
-              <div className="flex-shrink-0">
-                <calc.icon className="w-8 h-8 text-amber group-hover:scale-110 transition-transform duration-300" />
+              <div className="flex-shrink-0 mt-1 md:mt-0">
+                <calc.icon className="w-8 h-8 md:w-10 md:h-10 text-amber group-hover:scale-110 transition-transform duration-300" />
               </div>
-              <div>
-                <h4 className="h4 text-black mb-3">{calc.title}</h4>
-                <p className="body-regular text-gray-600 mb-6">
+              <div className="flex flex-col flex-grow">
+                <h4 className="h4 text-black mb-2 md:mb-3">{calc.title}</h4>
+                <p className="body-regular text-gray-600 mb-4 md:mb-6 flex-grow">
                   {calc.description}
                 </p>
-                <span className="label text-navy flex items-center gap-2 group-hover:text-amber transition-colors">
+                <span className="text-base md:text-sm font-bold text-navy flex items-center gap-2 group-hover:text-amber transition-colors mt-auto">
                   Calculate Now 
                   <span className="font-normal">→</span>
                 </span>

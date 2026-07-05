@@ -43,7 +43,7 @@ export function BlogPreviewSection() {
               href={article.href}
               className="flex flex-col group"
             >
-              <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden mb-6">
+              <div className="relative w-full aspect-[4/3] overflow-hidden mb-6">
                 <Image 
                   src={article.image} 
                   alt={article.title}

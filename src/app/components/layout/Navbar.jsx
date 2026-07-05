@@ -25,7 +25,7 @@ export function Navbar() {
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center gap-2">
             <Link href="/" className="flex items-center">
-              <Image src="/Logo.png" alt="MySolarAnswer Logo" width={500} height={500} className="h-16 md:h-20 w-auto object-contain" />
+              <Image src="/Logo.png" alt="MySolarAnswer Logo" width={500} height={500} className="h-20 md:h-24 w-auto object-contain" />
             </Link>
           </div>
 
@@ -37,7 +37,7 @@ export function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`label transition-colors ${isActive ? 'text-amber' : 'text-black hover:text-amber'}`}
+                  className={`text-base font-bold transition-colors ${isActive ? 'text-amber' : 'text-black hover:text-amber'}`}
                 >
                   {link.name}
                 </Link>
@@ -49,7 +49,7 @@ export function Navbar() {
           <div className="hidden md:flex items-center">
             <Link
               href="/calculators"
-              className="px-6 py-2.5 rounded-full border border-gray-300 text-black hover:bg-amber hover:text-white hover:border-amber transition-all font-semibold text-sm flex items-center gap-2"
+              className="px-6 py-2.5 rounded-full border-2 border-gray-300 text-black hover:bg-amber hover:text-white hover:border-amber transition-all font-semibold text-sm flex items-center gap-2"
             >
               Explore Calculators
             </Link>

@@ -20,7 +20,7 @@ export function CTASection() {
         <div className="flex justify-center">
           <Link 
             href="/calculators"
-            className="px-8 py-4 rounded-full bg-navy text-white label flex items-center justify-center gap-2 hover:bg-slate-800 transition-all hover:-translate-y-1 shadow-lg"
+            className="btn-base rounded-full bg-navy text-white flex items-center justify-center gap-2 hover:bg-slate-800 transition-all hover:-translate-y-1 shadow-lg"
           >
             Calculate Now
             <span className="bg-white text-navy rounded-full w-6 h-6 flex items-center justify-center ml-2">→</span>

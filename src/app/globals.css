@@ -33,25 +33,30 @@
     --border-divider-on-navy: rgba(255, 255, 255, 0.15);
 
     /* Typography Sizes */
-    --font-size-h1-desktop: 68px;
-    --font-size-h1-tablet: 54px;
-    --font-size-h1-mobile: 40px;
+    --font-size-h1-desktop: 50px;
+    --font-size-h1-tablet: 40px;
+    --font-size-h1-mobile: 35px;
     
-    --font-size-h2-desktop: 48px;
-    --font-size-h2-tablet: 38px;
-    --font-size-h2-mobile: 32px;
+    --font-size-h2-desktop: 40px;
+    --font-size-h2-tablet: 32px;
+    --font-size-h2-mobile: 28px;
     
-    --font-size-h3-desktop: 32px;
-    --font-size-h3-tablet: 26px;
+    --font-size-h3-desktop: 28px;
+    --font-size-h3-tablet: 24px;
     --font-size-h3-mobile: 20px;
     
-    --font-size-h4: 22px;
+    --font-size-h4: 20px;
     
-    --font-size-body-large-desktop: 20px;
+    --font-size-body-large-desktop: 16px;
     --font-size-body-large-mobile: 16px;
     
-    --font-size-body-regular: 16px;
-    --font-size-label: 14px;
+    --font-size-body-regular: 14px;
+    --font-size-label: 12px;
+    
+    /* Button sizing */
+    --btn-padding-y: 12px;
+    --btn-padding-x: 28px;
+    --btn-font-size: 16px;
   }
 
   body {
@@ -127,6 +132,12 @@
     font-weight: 600;
     line-height: 1.4;
     font-size: var(--font-size-label);
+  }
+
+  .btn-base {
+    padding: var(--btn-padding-y) var(--btn-padding-x);
+    font-size: var(--btn-font-size);
+    font-weight: 700;
   }
 
   /* Dark section overrides */

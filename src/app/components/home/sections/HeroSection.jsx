@@ -12,7 +12,7 @@ export function HeroSection() {
           <div className="flex flex-col items-start max-w-2xl animate-fade-in-up">
             <h1 className="h1 text-navy mb-6">
               Free Solar Calculators<br />
-              <span className="text-amber">Get Your  Answer</span> in Seconds
+              <span className="text-amber">Get Your Answer</span> in Seconds
             </h1>
             
             <p className="body-large text-gray-600 mb-10 max-w-xl">
@@ -22,14 +22,14 @@ export function HeroSection() {
             <div className="flex flex-col sm:flex-row gap-4 mb-8 w-full sm:w-auto">
               <Link 
                 href="#calculators" 
-                className="px-8 py-4 rounded-full bg-amber text-white label flex items-center justify-center gap-2 hover:bg-[#b08513] transition-all group shadow-lg"
+                className="btn-base rounded-full bg-amber text-white flex items-center justify-center gap-2 hover:bg-[#b08513] transition-all group shadow-lg"
               >
                 Select Calculator
                 <ArrowUpRight className="w-5 h-5 bg-white/20 text-white rounded-full p-0.5 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
               </Link>
               <Link 
                 href="#how-it-works" 
-                className="px-8 py-4 rounded-full border-2 border-navy text-navy label flex items-center justify-center gap-2 hover:bg-amber hover:border-amber hover:text-white transition-all group"
+                className="btn-base rounded-full border-2 border-navy text-navy flex items-center justify-center gap-2 hover:bg-amber hover:border-amber hover:text-white transition-all group"
               >
                 <PlayCircle className="w-5 h-5" />
                 See how it works
@@ -37,24 +37,33 @@ export function HeroSection() {
             </div>
             
             {/* Calculator Cards replacing Stats */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full pt-8 border-t border-[var(--border-divider)]">
-              <Link href="/calculators/solar-battery-calculator" className="flex flex-col gap-2 p-4 rounded-xl border border-gray-200 bg-white hover:border-amber hover:shadow-md transition-all group">
-                <Battery className="w-6 h-6 text-amber group-hover:scale-110 transition-transform" />
-                <p className="text-sm font-bold text-navy">Battery Calculator</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full pt-8 border-t border-[var(--border-divider)]">
+              <Link href="/calculators/solar-battery-calculator" className="flex flex-col justify-between gap-2 p-3 rounded-xl border border-gray-200 bg-white hover:border-amber hover:shadow-md transition-all group">
+                <div className="flex justify-between items-start">
+                  <Battery className="w-5 h-5 text-amber group-hover:scale-110 transition-transform" />
+                  <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover:text-amber transition-colors" />
+                </div>
+                <p className="text-xs font-bold text-navy leading-tight">Battery Calculator</p>
               </Link>
-              <Link href="/calculators/solar-roi-calculator" className="flex flex-col gap-2 p-4 rounded-xl border border-gray-200 bg-white hover:border-amber hover:shadow-md transition-all group">
-                <TrendingUp className="w-6 h-6 text-amber group-hover:scale-110 transition-transform" />
-                <p className="text-sm font-bold text-navy">ROI Calculator</p>
+              <Link href="/calculators/solar-roi-calculator" className="flex flex-col justify-between gap-2 p-3 rounded-xl border border-gray-200 bg-white hover:border-amber hover:shadow-md transition-all group">
+                <div className="flex justify-between items-start">
+                  <TrendingUp className="w-5 h-5 text-amber group-hover:scale-110 transition-transform" />
+                  <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover:text-amber transition-colors" />
+                </div>
+                <p className="text-xs font-bold text-navy leading-tight">ROI Calculator</p>
               </Link>
-              <Link href="/calculators/off-grid-solar-calculator" className="flex flex-col gap-2 p-4 rounded-xl border border-gray-200 bg-white hover:border-amber hover:shadow-md transition-all group">
-                <Home className="w-6 h-6 text-amber group-hover:scale-110 transition-transform" />
-                <p className="text-sm font-bold text-navy">Off-Grid Calculator</p>
+              <Link href="/calculators/off-grid-solar-calculator" className="flex flex-col justify-between gap-2 p-3 rounded-xl border border-gray-200 bg-white hover:border-amber hover:shadow-md transition-all group">
+                <div className="flex justify-between items-start">
+                  <Home className="w-5 h-5 text-amber group-hover:scale-110 transition-transform" />
+                  <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover:text-amber transition-colors" />
+                </div>
+                <p className="text-xs font-bold text-navy leading-tight">Off-Grid Calculator</p>
               </Link>
             </div>
           </div>
           
           {/* Right Image */}
-          <div className="relative h-[400px] sm:h-[500px] lg:h-[600px] w-full rounded-3xl overflow-hidden shadow-2xl animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+          <div className="relative h-[400px] sm:h-[500px] lg:h-[600px] w-full overflow-hidden shadow-2xl animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
             <Image 
               src="/solar-panel-calculators-for-homeowners.jpg" 
               alt="Solar panels at sunset" 

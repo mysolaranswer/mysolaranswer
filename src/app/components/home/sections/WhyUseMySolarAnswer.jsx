@@ -28,23 +28,22 @@ export function WhyUseMySolarAnswer() {
   return (
     <section className="w-full dark-section py-20 lg:py-32 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Top Header */}
-        <div className="flex flex-col items-start mb-16">
+        
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12 items-stretch">
           
-          <h2 className="h2 mb-6">
-            Why Use Our Solar Calculators
-          </h2>
-          <p className="body-large text-[var(--text-body-on-navy)] max-w-2xl">
-            Unlock the power of solar energy and enjoy long-term advantages with our precise and free calculators.
-          </p>
-        </div>
+          {/* Column 1 - Heading & Text */}
+          <div className="flex flex-col justify-between py-4 lg:py-8">
+            <h2 className="h2 mb-6">
+              Why Use Our Solar Calculators
+            </h2>
+            <p className="body-large text-[var(--text-body-on-navy)] mt-auto">
+              Unlock the power of solar energy and enjoy long-term advantages with our precise and free calculators.
+            </p>
+          </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 items-center">
-          
-          {/* Left - Image */}
-          <div className="flex flex-col items-start">
-            
-            <div className="relative w-full aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
+          {/* Column 2 - Image */}
+          <div className="flex flex-col items-center justify-center">
+            <div className="relative w-full aspect-square lg:aspect-[3/4] overflow-hidden shadow-2xl">
               <Image 
                 src="/why-use-our-solar-calculators.jpg" 
                 alt="Why use our solar calculators" 
@@ -54,8 +53,8 @@ export function WhyUseMySolarAnswer() {
             </div>
           </div>
 
-          {/* Right - List of Benefits */}
-          <div className="flex flex-col gap-10">
+          {/* Column 3 - List of Benefits */}
+          <div className="flex flex-col gap-8 justify-center py-4 lg:py-8">
             {benefits.map((benefit, idx) => (
               <div key={idx} className="flex items-start gap-6 group">
                 <div className="flex-shrink-0 w-14 h-14 rounded-full bg-amber/20 flex items-center justify-center border border-amber/30 group-hover:bg-amber group-hover:text-navy transition-colors">
