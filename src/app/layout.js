@@ -1,4 +1,4 @@
-import { Inter } from "next/font/google";
+import { Inter, Outfit, Playfair_Display, Space_Grotesk, Syne } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { Navbar } from "./components/layout/Navbar";
@@ -7,6 +7,30 @@ import { Footer } from "./components/layout/Footer";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space",
+  display: "swap",
+});
+
+const syne = Syne({
+  subsets: ["latin"],
+  variable: "--font-syne",
   display: "swap",
 });
 
@@ -46,7 +70,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} h-full`}>
+    <html lang="en" className={`${inter.variable} ${outfit.variable} ${playfair.variable} ${spaceGrotesk.variable} ${syne.variable} h-full`}>
       <body className="min-h-full flex flex-col font-sans bg-gray-50 text-gray-900">
         <Navbar />
         <main className="flex-grow">
