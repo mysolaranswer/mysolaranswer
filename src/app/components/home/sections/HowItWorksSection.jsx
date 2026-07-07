@@ -90,7 +90,7 @@ export function HowItWorksSection() {
             <div className="grid grid-cols-2 gap-3 sm:gap-4 h-full w-full">
               
               {/* Column 1 - Tall Portrait Image */}
-              <div className="relative w-full h-full overflow-hidden bg-slate-800">
+              <div className="relative w-full h-full overflow-hidden bg-slate-800 rounded-md">
                 <Image
                   src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=2072&auto=format&fit=crop"
                   alt="Clear blue sky over solar panels"
@@ -103,7 +103,7 @@ export function HowItWorksSection() {
               <div className="grid grid-rows-2 gap-3 sm:gap-4 h-full w-full">
                 
                 {/* Top Image */}
-                <div className="relative w-full h-full overflow-hidden bg-slate-800">
+                <div className="relative w-full h-full overflow-hidden bg-slate-800 rounded-md">
                   <Image
                     src="https://images.unsplash.com/photo-1592833159155-c62df1b65634?q=80&w=2069&auto=format&fit=crop"
                     alt="Solar panels on green landscape"
@@ -113,7 +113,7 @@ export function HowItWorksSection() {
                 </div>
                 
                 {/* Bottom Image */}
-                <div className="relative w-full h-full overflow-hidden bg-slate-800">
+                <div className="relative w-full h-full overflow-hidden bg-slate-800 rounded-md">
                   <Image
                     src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?q=80&w=2058&auto=format&fit=crop"
                     alt="Solar panels at sunset"

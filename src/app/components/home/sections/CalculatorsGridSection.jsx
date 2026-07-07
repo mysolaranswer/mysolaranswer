@@ -65,38 +65,18 @@ export function CalculatorsGridSection() {
               </p>
             </div>
 
-            {/* Explore All CTA with Animated Sketch Underline */}
+            {/* Explore All CTA with Simple Underline */}
             <Link 
               href="/calculators"
-              className="group relative inline-flex items-center gap-2 text-[var(--color-navy)] hover:text-[var(--color-amber)] transition-colors duration-300 w-max font-bold text-lg"
+              className="group relative inline-flex items-center gap-2 text-[var(--color-navy)] hover:text-[var(--color-amber)] transition-colors duration-300 w-max font-bold text-lg py-2"
             >
               <span className="relative z-10">Explore All Calculators</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform duration-300" strokeWidth={2.5} />
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform duration-300 relative z-10" strokeWidth={2.5} />
               
-              {/* Premium Sketch Underline SVG (Animated with clip-path) */}
-              <svg 
-                className="absolute -bottom-2 left-0 w-[calc(100%-1.5rem)] h-2.5 text-[var(--color-amber)] transition-all duration-300 ease-out [clip-path:inset(0_100%_0_0)] opacity-0 group-hover:opacity-100 group-hover:[clip-path:inset(0_0_0_0)]"
-                viewBox="0 0 100 12" 
-                fill="none" 
-                preserveAspectRatio="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                {/* Main stroke */}
-                <path 
-                  d="M 2 9 C 30 4 70 12 98 6" 
-                  stroke="currentColor" 
-                  strokeWidth="2.5" 
-                  strokeLinecap="round" 
-                />
-                {/* Secondary thin stroke for marker overlap realism */}
-                <path 
-                  d="M 10 11 C 40 8 80 14 90 9" 
-                  stroke="currentColor" 
-                  strokeWidth="1" 
-                  strokeLinecap="round" 
-                  strokeOpacity="0.5" 
-                />
-              </svg>
+              {/* Clean, Architectural Underline */}
+              <span 
+                className="absolute left-0 -bottom-1 w-full h-[2px] bg-[var(--color-amber)] origin-left transition-transform duration-300 ease-out scale-x-0 group-hover:scale-x-100"
+              />
             </Link>
           </div>
 

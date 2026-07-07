@@ -60,9 +60,9 @@ export function WhyUseMySolarAnswer() {
           {benefits.map((benefit, idx) => {
             const delays = ["delay-100", "delay-200", "delay-300", "delay-400"];
             return (
-              <RevealOnScroll key={idx} delay={delays[idx]} className="group relative flex flex-col p-6 sm:p-7 rounded-[1.5rem] bg-gradient-to-b from-[var(--color-white)] to-[var(--color-navy)]/[0.03] border border-[var(--border-divider)] shadow-[0_8px_24px_-12px_rgba(13,27,42,0.12)] hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(13,27,42,0.2)] hover:border-[var(--color-amber)]/30 transition-all duration-300">
-                {/* Permanent Brand Accent: Top colored edge */}
-                <div className="absolute top-0 left-8 right-8 h-[3px] bg-[var(--color-amber)]/20 rounded-b-full group-hover:bg-[var(--color-amber)] transition-colors duration-300" />
+              <RevealOnScroll key={idx} delay={delays[idx]} className="group relative flex flex-col p-6 sm:p-7 rounded-md bg-gradient-to-b from-[var(--color-white)] to-[var(--color-navy)]/[0.03] border border-[var(--border-divider)] hover:border-[var(--color-amber)]/40 hover:shadow-[0_16px_40px_-12px_rgba(13,27,42,0.12)] transition-all duration-500 overflow-hidden">
+                {/* Brand Ambient Glow on Hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-amber)]/0 via-transparent to-[var(--color-amber)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0" />
 
                 {/* Clean Icon with permanent brand presence */}
                 <div className="mb-5 flex items-center justify-between">
