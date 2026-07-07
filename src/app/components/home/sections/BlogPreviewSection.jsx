@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+import { SketchHighlight } from "@/app/components/ui/SketchHighlight";
+import { RevealOnScroll } from "@/app/components/ui/RevealOnScroll";
 
 export function BlogPreviewSection() {
   const articles = [
@@ -21,20 +23,21 @@ export function BlogPreviewSection() {
       title: "Understanding Solar Battery Storage: Is It Right for You?",
       category: "Technology & Innovation",
       date: "Apr 22, 2026",
-      image: "https://images.unsplash.com/photo-1548611716-3001ab43dc4b?q=80&w=2070&auto=format&fit=crop",
+      image: "https://images.pexels.com/photos/27637329/pexels-photo-27637329.jpeg",
+      
       href: "/blog/understanding-solar-batteries",
     },
   ];
 
   return (
-    <section className="w-full bg-[var(--bg-page)] py-20 lg:py-32 border-t border-[var(--border-divider)]">
+    <section className="w-full bg-[var(--bg-page)] py-16 lg:py-24 border-t border-[var(--border-divider)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="text-center mb-16">
-          <h2 className="h2 text-black max-w-2xl mx-auto">
-            Stay Informed With Expert Insights, Tips About Solar Energy
+        <RevealOnScroll className="text-center mb-16">
+          <h2 className="font-heading text-[var(--color-navy)] max-w-2xl mx-auto leading-tight">
+            Stay Informed With Expert Insights, Tips About <SketchHighlight>Solar Energy</SketchHighlight>
           </h2>
-        </div>
+        </RevealOnScroll>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {articles.map((article, idx) => (
@@ -48,7 +51,7 @@ export function BlogPreviewSection() {
                   src={article.image} 
                   alt={article.title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover transition-transform duration-500 rounded-md"
                 />
               </div>
               
@@ -62,7 +65,7 @@ export function BlogPreviewSection() {
                 </span>
               </div>
               
-              <h3 className="h3 !text-lg md:!text-xl text-black group-hover:text-amber transition-colors">
+              <h3 className="font-sub-heading !text-lg md:!text-xl text-black  transition-colors">
                 {article.title}
               </h3>
             </Link>

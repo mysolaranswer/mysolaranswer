@@ -26,11 +26,11 @@ export function FAQSection() {
   const [openIdx, setOpenIdx] = useState(0);
 
   return (
-    <section className="w-full bg-[var(--bg-page)] py-20 lg:py-32">
+    <section className="w-full bg-[var(--bg-page)] py-16 lg:py-24">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center mb-16">
-          <h2 className="h2 text-black">
+          <h2 className="font-heading text-black">
             Frequently Asked Questions
           </h2>
         </div>
@@ -47,7 +47,7 @@ export function FAQSection() {
                   onClick={() => setOpenIdx(isOpen ? -1 : idx)}
                   className="w-full text-left px-6 py-5 flex items-center justify-between gap-4"
                 >
-                  <h3 className={`h3 !text-lg md:!text-xl ${isOpen ? 'text-white' : 'text-black'}`}>
+                  <h3 className={`font-sub-heading !text-lg md:!text-xl ${isOpen ? 'text-white' : 'text-black'}`}>
                     {faq.question}
                   </h3>
                   <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${isOpen ? 'text-amber' : 'text-amber'}`}>
@@ -57,7 +57,7 @@ export function FAQSection() {
                 
                 {isOpen && (
                   <div className="px-6 pb-6 pt-0 animate-fade-in-up">
-                    <p className="body-regular text-[var(--text-body-on-navy)]">
+                    <p className="font-body text-[var(--text-body-on-navy)] opacity-90">
                       {faq.answer}
                     </p>
                   </div>

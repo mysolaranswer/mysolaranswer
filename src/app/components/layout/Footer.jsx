@@ -21,9 +21,7 @@ export function Footer() {
             <p className="text-base text-[var(--text-body-on-navy)] mb-6 max-w-xs leading-relaxed">
               What began as a simple idea grew into a mission — to harness nature's most abundant resources, wind and sunlight, to power a brighter tomorrow.
             </p>
-            <p className="text-base text-[var(--text-body-on-navy)]">
-              contact@mysolaranswer.com
-            </p>
+           
           </div>
 
           {/* Quick Links */}
@@ -43,7 +41,7 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex items-center gap-3 text-[var(--text-body-on-navy)] text-base break-all">
                 <Mail className="w-6 h-6 text-amber flex-shrink-0" />
-                hello@mysolaranswer.com
+              mysolaranswer@gmail.com
               </li>
               <li className="flex items-center gap-3 text-[var(--text-body-on-navy)] text-base">
                 <Phone className="w-6 h-6 text-amber flex-shrink-0" />

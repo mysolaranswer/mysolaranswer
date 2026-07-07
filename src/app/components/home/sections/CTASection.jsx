@@ -1,33 +1,43 @@
 import Link from "next/link";
+import { SecondaryButton } from "@/app/components/ui/buttons/SecondaryButton";
+import { SketchHighlight } from "@/app/components/ui/SketchHighlight";
+import { RevealOnScroll } from "@/app/components/ui/RevealOnScroll";
 
 export function CTASection() {
   return (
-    <section className="w-full bg-[var(--bg-page)] py-20 lg:py-32">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber/10 border border-amber/20 mb-8">
-          <span className="text-xs font-bold text-navy uppercase tracking-wide">Ready to get started?</span>
-        </div>
-        
-        <h2 className="text-[3rem] md:text-[4rem] leading-[1.1] font-black tracking-tighter text-navy mb-6">
-          Calculate Your <span className="text-amber">Solar Savings</span> Today!
-        </h2>
-        
-        <p className="body-large text-gray-600 mb-10 max-w-2xl mx-auto">
-          Interested in switching to solar? Let's work together to find the perfect solution for your home or business with our free calculator tools.
-        </p>
-        
-        <div className="flex justify-center">
-          <Link 
-            href="/calculators"
-            className="btn-base rounded-full bg-navy text-white flex items-center justify-center gap-2 hover:bg-slate-800 transition-all hover:-translate-y-1 shadow-lg"
-          >
-            Calculate Now
-            <span className="bg-white text-navy rounded-full w-6 h-6 flex items-center justify-center ml-2">→</span>
-          </Link>
+    <section className="w-full bg-[var(--bg-page)] py-16  border-t border-[var(--border-divider)]">
+      <RevealOnScroll className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white border border-slate-200 shadow-sm mb-8">
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--color-amber)] opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[var(--color-amber)]"></span>
+          </span>
+          <span className="text-xs font-bold text-[var(--color-navy)] uppercase tracking-[0.15em]">
+            Ready to get started?
+          </span>
         </div>
 
-      </div>
+        <h2 className="font-heading text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] leading-[1.1] text-[var(--color-navy)] mb-6">
+          Calculate Your <br className="md:hidden" />
+          <SketchHighlight>Solar Savings</SketchHighlight> Today!
+        </h2>
+
+        <p className="font-body text-[var(--text-body-on-white)] opacity-80 mb-10 max-w-2xl mx-auto leading-relaxed text-base sm:text-lg">
+          Interested in switching to solar? Let's work together to find the
+          perfect solution for your home or business with our free
+          professional-grade calculator tools.
+        </p>
+
+        <div className="flex justify-center">
+          <SecondaryButton 
+            href="/calculators" 
+            showArrow={true}
+            className="!px-10 !py-4 !text-lg shadow-lg hover:shadow-xl"
+          >
+            Calculate Now
+          </SecondaryButton>
+        </div>
+      </RevealOnScroll>
     </section>
   );
 }

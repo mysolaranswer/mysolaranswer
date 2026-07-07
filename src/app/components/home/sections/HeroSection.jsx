@@ -1,84 +1,68 @@
-import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight, PlayCircle, Battery, TrendingUp, Home } from "lucide-react";
+import { PrimaryButton } from "../../ui/buttons/PrimaryButton";
+import { OutlineButton } from "../../ui/buttons/OutlineButton";
 
 export function HeroSection() {
   return (
-    <section className="w-full bg-[var(--bg-page)] min-h-[85vh] flex items-center pt-6 pb-12 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-4 md:mt-0">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+    <section className="w-full lg:min-h-[calc(100vh-5rem)] min-h-[600px] bg-white flex items-center border-b border-slate-200 font-sans py-10 lg:py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 lg:gap-24 items-center">
           
-          {/* Left Content */}
-          <div className="flex flex-col items-start max-w-2xl animate-fade-in-up">
-            <h1 className="h1 text-navy mb-6">
-              Free Solar Calculators<br />
-              <span className="text-amber">Get Your Answer</span> in Seconds
+          {/* Left Column — staggered entrance on page load */}
+          <div className="flex flex-col items-start max-w-xl">
+            <h1
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-[#0a192f] 
+            leading-[1.15] md:leading-[1.1] mb-6 tracking-tight
+            [animation:heroSlideIn_0.8s_cubic-bezier(0.16,1,0.3,1)_0.1s_both]"
+            >
+              Free Solar Calculators.
+              <br />
+              <span className="text-[#f59e0b]">Get Your Answers</span>
+              <br />
+              In Seconds
             </h1>
-            
-            <p className="body-large text-gray-600 mb-10 max-w-xl">
-              Free solar calculators for panels, battery, ROI, off-grid & more. Calculate your solar system size, savings, and payback period instantly. No signup needed.
+
+            <p className="font-body text-[var(--text-body-on-white)] opacity-80 mb-8 max-w-xl leading-relaxed
+              [animation:heroSlideIn_0.8s_cubic-bezier(0.16,1,0.3,1)_0.25s_both]">
+              Free solar calculators for panels, battery, ROI, off-grid & more.
+              Calculate your solar system size, savings, and payback period
+              instantly. No signup needed.
             </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 mb-8 w-full sm:w-auto">
-              <Link 
-                href="#calculators" 
-                className="btn-base rounded-full bg-amber text-white flex items-center justify-center gap-2 hover:bg-[#b08513] transition-all group shadow-lg"
-              >
-                Select Calculator
-                <ArrowUpRight className="w-5 h-5 bg-white/20 text-white rounded-full p-0.5 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
-              </Link>
-              <Link 
-                href="#how-it-works" 
-                className="btn-base rounded-full border-2 border-navy text-navy flex items-center justify-center gap-2 hover:bg-amber hover:border-amber hover:text-white transition-all group"
-              >
-                <PlayCircle className="w-5 h-5" />
-                See how it works
-              </Link>
-            </div>
-            
-            {/* Calculator Cards replacing Stats */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full pt-8 border-t border-[var(--border-divider)]">
-              <Link href="/calculators/solar-battery-calculator" className="flex flex-col justify-between gap-2 p-3 rounded-xl border border-gray-200 bg-white hover:border-amber hover:shadow-md transition-all group">
-                <div className="flex justify-between items-start">
-                  <Battery className="w-5 h-5 text-amber group-hover:scale-110 transition-transform" />
-                  <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover:text-amber transition-colors" />
-                </div>
-                <p className="text-xs font-bold text-navy leading-tight">Battery Calculator</p>
-              </Link>
-              <Link href="/calculators/solar-roi-calculator" className="flex flex-col justify-between gap-2 p-3 rounded-xl border border-gray-200 bg-white hover:border-amber hover:shadow-md transition-all group">
-                <div className="flex justify-between items-start">
-                  <TrendingUp className="w-5 h-5 text-amber group-hover:scale-110 transition-transform" />
-                  <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover:text-amber transition-colors" />
-                </div>
-                <p className="text-xs font-bold text-navy leading-tight">ROI Calculator</p>
-              </Link>
-              <Link href="/calculators/off-grid-solar-calculator" className="flex flex-col justify-between gap-2 p-3 rounded-xl border border-gray-200 bg-white hover:border-amber hover:shadow-md transition-all group">
-                <div className="flex justify-between items-start">
-                  <Home className="w-5 h-5 text-amber group-hover:scale-110 transition-transform" />
-                  <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover:text-amber transition-colors" />
-                </div>
-                <p className="text-xs font-bold text-navy leading-tight">Off-Grid Calculator</p>
-              </Link>
-            </div>
-          </div>
-          
-          {/* Right Image */}
-          <div className="relative h-[400px] sm:h-[500px] lg:h-[600px] w-full overflow-hidden shadow-2xl animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-            <Image 
-              src="/solar-panel-calculators-for-homeowners.jpg" 
-              alt="Solar panels at sunset" 
-              fill
-              className="object-cover"
-              priority
-            />
-            {/* Floating Card equivalent */}
-            <div className="absolute bottom-6 left-6 right-6 md:bottom-8 md:right-8 md:left-auto bg-white/90 backdrop-blur-md p-5 rounded-2xl shadow-xl max-w-sm">
-              <p className="text-sm font-semibold text-navy">
-                Unlock the power of solar energy and enjoy long-term savings instantly with our free tools.
-              </p>
+
+            {/* Responsive Call to Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 w-full
+              [animation:heroSlideIn_0.8s_cubic-bezier(0.16,1,0.3,1)_0.4s_both]">
+              <PrimaryButton href="#calculators">
+                Explore Calculators
+              </PrimaryButton>
+              <OutlineButton href="#how-it-works">How It Works</OutlineButton>
             </div>
           </div>
 
+          {/* Right Column — slides in from the right */}
+          <div className="relative h-[300px] sm:h-[350px] lg:h-[380px] xl:h-[420px] w-full bg-slate-100 group
+            [animation:heroSlideIn_0.9s_cubic-bezier(0.16,1,0.3,1)_0.2s_both]">
+            <Image
+              src="/solar-panel-calculators-for-homeowners.jpg"
+              alt="Modern solar panels on a roof"
+              fill
+              className="object-cover grayscale-[15%] contrast-[1.05] transition-all duration-700 rounded-md"
+              priority
+            />
+
+            {/* Geometric Framing Accents */}
+            <div className="absolute -bottom-6 -left-6 w-32 h-32 border-l-4 border-b-4 border-[#0a192f] pointer-events-none hidden lg:block "></div>
+
+            {/* Enhanced Information Badge */}
+            <div className="absolute -top-4 -right-4 md:-top-6 md:-right-6 w-18 h-18 md:w-20 md:h-20 bg-[#0a192f] rounded-full shadow-2xl flex flex-col items-center justify-center text-white border-4 border-white transition-transform duration-300 hover:scale-105 z-10">
+              <span className="text-sm md:text- xl font-bold tracking-tighter text-white">
+                100%
+              </span>
+              <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#f59e0b] mt-1">
+                Free
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </section>

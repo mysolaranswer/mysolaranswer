@@ -4,7 +4,7 @@
   --font-sans: var(--font-plus-jakarta-sans);
   --font-inter: var(--font-inter);
   
-  --color-amber: #D4A017;
+  --color-amber: #f5a122;
   --color-navy: #0D1B2A;
   --color-white: #FFFFFF;
   --color-black: #111111;
@@ -78,7 +78,7 @@
   @media (min-width: 768px) { h1, .h1 { font-size: var(--font-size-h1-tablet); } }
   @media (min-width: 1024px) { h1, .h1 { font-size: var(--font-size-h1-desktop); } }
 
-  h2, .h2 {
+  .font-heading {
     font-family: var(--font-sans);
     font-weight: 700;
     text-transform: capitalize;
@@ -87,10 +87,10 @@
     font-size: var(--font-size-h2-mobile);
     color: var(--text-h-on-white);
   }
-  @media (min-width: 768px) { h2, .h2 { font-size: var(--font-size-h2-tablet); } }
-  @media (min-width: 1024px) { h2, .h2 { font-size: var(--font-size-h2-desktop); } }
+  @media (min-width: 768px) { .font-heading { font-size: var(--font-size-h2-tablet); } }
+  @media (min-width: 1024px) { .font-heading { font-size: var(--font-size-h2-desktop); } }
 
-  h3, .h3 {
+  .font-sub-heading {
     font-family: var(--font-sans);
     font-weight: 600;
     text-transform: capitalize;
@@ -99,8 +99,8 @@
     font-size: var(--font-size-h3-mobile);
     color: var(--text-h-on-white);
   }
-  @media (min-width: 768px) { h3, .h3 { font-size: var(--font-size-h3-tablet); } }
-  @media (min-width: 1024px) { h3, .h3 { font-size: var(--font-size-h3-desktop); } }
+  @media (min-width: 768px) { .font-sub-heading { font-size: var(--font-size-h3-tablet); } }
+  @media (min-width: 1024px) { .font-sub-heading { font-size: var(--font-size-h3-desktop); } }
 
   h4, .h4 {
     font-family: var(--font-inter);
@@ -112,13 +112,13 @@
   }
 
   /* Body Text */
-  .body-large {
+  .font-body {
     font-family: var(--font-sans);
     font-weight: 400;
     line-height: 1.5;
     font-size: var(--font-size-body-large-mobile);
   }
-  @media (min-width: 768px) { .body-large { font-size: var(--font-size-body-large-desktop); } }
+  @media (min-width: 768px) { .font-body { font-size: var(--font-size-body-large-desktop); } }
 
   p, .body-regular {
     font-family: var(--font-sans);
@@ -146,20 +146,65 @@
     color: var(--text-body-on-navy);
   }
   .dark-section h1, .dark-section .h1, 
-  .dark-section h2, .dark-section .h2, 
-  .dark-section h3, .dark-section .h3 {
+  .dark-section .font-heading,
+  .dark-section .font-sub-heading {
     color: var(--text-h-on-navy);
   }
 }
 
 @layer utilities {
+  /* Base reveal state — elements start invisible */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-32px);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(32px);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-scale {
+    opacity: 0;
+    transform: scale(0.96);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Triggered state */
+  .in-view {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Stagger delays */
+  .delay-100 { transition-delay: 100ms; }
+  .delay-200 { transition-delay: 200ms; }
+  .delay-300 { transition-delay: 300ms; }
+  .delay-400 { transition-delay: 400ms; }
+  .delay-500 { transition-delay: 500ms; }
+
+  /* Legacy keyframe class (kept for compatibility) */
   .animate-fade-in-up {
-    animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 }
 
 @keyframes fadeInUp {
   0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroSlideIn {
+  0% { opacity: 0; transform: translateY(16px); }
   100% { opacity: 1; transform: translateY(0); }
 }
 
