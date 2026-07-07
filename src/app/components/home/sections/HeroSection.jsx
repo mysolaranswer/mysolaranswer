@@ -1,6 +1,7 @@
-import Image from "next/image";
+
 import { PrimaryButton } from "../../ui/buttons/PrimaryButton";
 import { OutlineButton } from "../../ui/buttons/OutlineButton";
+import { QuickEstimateCalculator } from "../QuickEstimateCalculator";
 
 export function HeroSection() {
   return (
@@ -39,29 +40,12 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Right Column — slides in from the right */}
-          <div className="relative h-[300px] sm:h-[350px] lg:h-[380px] xl:h-[420px] w-full bg-slate-100 group
-            [animation:heroSlideIn_0.9s_cubic-bezier(0.16,1,0.3,1)_0.2s_both]">
-            <Image
-              src="/solar-panel-calculators-for-homeowners.jpg"
-              alt="Modern solar panels on a roof"
-              fill
-              className="object-cover grayscale-[15%] contrast-[1.05] transition-all duration-700 rounded-md"
-              priority
-            />
-
+          {/* Right Column — Quick Estimate Calculator */}
+          <div className="w-full relative z-10">
             {/* Geometric Framing Accents */}
             <div className="absolute -bottom-6 -left-6 w-32 h-32 border-l-4 border-b-4 border-[#0a192f] pointer-events-none hidden lg:block "></div>
-
-            {/* Enhanced Information Badge */}
-            <div className="absolute -top-4 -right-4 md:-top-6 md:-right-6 w-18 h-18 md:w-20 md:h-20 bg-[#0a192f] rounded-full shadow-2xl flex flex-col items-center justify-center text-white border-4 border-white transition-transform duration-300 hover:scale-105 z-10">
-              <span className="text-sm md:text- xl font-bold tracking-tighter text-white">
-                100%
-              </span>
-              <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#f59e0b] mt-1">
-                Free
-              </span>
-            </div>
+            
+            <QuickEstimateCalculator />
           </div>
         </div>
       </div>
