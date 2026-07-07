@@ -16,7 +16,7 @@ export default function WhoWeAre() {
           
           {/* Left Column - Image */}
           <div className="w-full lg:w-1/2 relative">
-            <div className="relative w-full aspect-[4/5] lg:aspect-square overflow-hidden shadow-xl">
+            <div className="relative w-full aspect-[4/5] lg:aspect-square overflow-hidden shadow-xl rounded-md">
               {/* Unsplash Placeholder for Team/Developers */}
               <img 
                 src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
@@ -28,15 +28,11 @@ export default function WhoWeAre() {
 
           {/* Right Column - Text & Stats */}
           <div className="w-full lg:w-1/2 flex flex-col justify-center">
-            <div className="mb-4 text-amber font-bold tracking-wider text-sm uppercase">
-              // WHO WE ARE
-            </div>
-            
-            <h2 className="h2 text-[var(--text-heading)] mb-6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-[var(--color-navy)] mb-6">
               Developers Passionate About Clear Information
             </h2>
             
-            <p className="text-base md:text-lg text-[var(--text-body)] mb-10 leading-relaxed">
+            <p className="text-base md:text-lg text-[var(--text-body-on-white)] opacity-80 mb-10 leading-relaxed">
               We&apos;re a small team of developers who noticed a huge gap in the solar industry: it&apos;s incredibly hard to get simple, accurate answers without talking to a salesperson. <br /><br />
               We decided to build the tools we wished we had when we were researching solar. No 50-person corporate team, no hidden agendas. Just clean, accurate calculators designed to give homeowners the power of transparent information.
             </p>
@@ -45,10 +41,10 @@ export default function WhoWeAre() {
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-8 border-t border-[var(--border-divider)]">
               {stats.map((stat, idx) => (
                 <div key={idx} className="flex flex-col">
-                  <div className="text-3xl md:text-4xl font-bold text-[#4B7252] mb-2">
+                  <div className="text-3xl md:text-4xl font-heading font-bold text-[var(--color-amber)] mb-2">
                     {stat.value}
                   </div>
-                  <div className="text-xs md:text-sm text-[var(--text-body)] uppercase tracking-wide">
+                  <div className="text-xs md:text-sm text-[var(--text-body-on-white)] opacity-70 uppercase tracking-wide font-bold">
                     {stat.label}
                   </div>
                 </div>

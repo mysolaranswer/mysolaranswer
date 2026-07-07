@@ -36,15 +36,15 @@ export default function WhatWeOffer() {
         
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-16 gap-8">
           <div className="max-w-xl">
-            <div className="mb-4 text-amber font-bold tracking-wider text-sm uppercase">
+            <div className="mb-4 text-[var(--color-amber)] font-bold tracking-wider text-sm uppercase">
               // WHAT WE OFFER
             </div>
-            <h2 className="h2 text-white">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white">
               Comprehensive Solar Tools
             </h2>
           </div>
           <div className="max-w-lg">
-            <p className="text-base md:text-lg text-[var(--text-body-on-navy)]">
+            <p className="text-base md:text-lg text-[var(--text-body-on-navy)] opacity-80">
               We provide a full suite of calculators to help you plan your solar journey from start to finish. Free, instant, and incredibly detailed.
             </p>
           </div>
@@ -55,16 +55,16 @@ export default function WhatWeOffer() {
             <Link 
               key={idx} 
               href={tool.href}
-              className="bg-[#1A2C38] border border-[#2D4A5E] p-8 hover:border-amber hover:shadow-[0_8px_30px_rgba(245,158,11,0.12)] transition-all group flex flex-col h-full"
+              className="bg-white/5 border border-white/10 p-8 rounded-md hover:border-[var(--color-amber)] hover:shadow-lg hover:shadow-[var(--color-amber)]/10 transition-all duration-300 group flex flex-col h-full"
             >
-              <div className="mb-6 bg-navy/50 w-14 h-14 rounded-full flex items-center justify-center">
-                <tool.icon className="w-7 h-7 text-amber group-hover:scale-110 transition-transform duration-300" />
+              <div className="mb-6 bg-[var(--color-amber)]/10 w-14 h-14 rounded-md flex items-center justify-center group-hover:scale-110 group-hover:bg-[var(--color-amber)] transition-all duration-300">
+                <tool.icon className="w-7 h-7 text-[var(--color-amber)] group-hover:text-[var(--color-navy)] transition-colors duration-300" />
               </div>
-              <h4 className="h4 text-white mb-3 text-lg">{tool.title}</h4>
-              <p className="text-sm text-[var(--text-body-on-navy)] flex-grow">
+              <h4 className="text-xl font-heading font-bold text-white mb-3">{tool.title}</h4>
+              <p className="text-sm text-[var(--text-body-on-navy)] opacity-80 flex-grow">
                 {tool.description}
               </p>
-              <div className="mt-6 text-amber font-bold text-sm flex items-center gap-2 group-hover:translate-x-1 transition-transform">
+              <div className="mt-6 text-[var(--color-amber)] font-bold text-sm flex items-center gap-2 group-hover:translate-x-1 transition-transform">
                 Open Calculator &rarr;
               </div>
             </Link>

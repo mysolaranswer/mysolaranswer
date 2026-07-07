@@ -1,6 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { PrimaryButton } from '../../ui/buttons/PrimaryButton';
 
 export default function AboutCTA() {
   return (
@@ -15,19 +14,16 @@ export default function AboutCTA() {
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center">
-        <h2 className="h2 text-white mb-6">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-6">
           Ready To Get Your Free Solar Estimate?
         </h2>
-        <p className="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed max-w-2xl mx-auto">
+        <p className="text-lg md:text-xl text-[var(--text-body-on-navy)] opacity-80 mb-10 leading-relaxed max-w-2xl mx-auto">
           Join thousands of homeowners who used our calculators to make informed, data-driven decisions about their energy future.
         </p>
         <div className="flex justify-center">
-          <Link 
-            href="/#calculators" 
-            className="btn-base bg-amber text-navy hover:bg-amber-hover font-bold inline-flex items-center gap-2 transition-colors"
-          >
-            Go To Calculators <ArrowRight className="w-5 h-5" />
-          </Link>
+          <PrimaryButton href="/#calculators">
+            Go To Calculators
+          </PrimaryButton>
         </div>
       </div>
     </section>
