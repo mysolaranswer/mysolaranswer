@@ -37,7 +37,7 @@ export function WhyUseMySolarAnswer() {
         {/* Header Section */}
         <RevealOnScroll className="text-center max-w-3xl mx-auto mb-12 lg:mb-16 flex flex-col items-center">
           {/* Prominent Heading with Refined Sketch Underline */}
-          <h2 className="font-heading text-[var(--color-navy)] tracking-tight mb-6">
+          <h2 className="h2 mb-6">
             <SketchHighlight>Why Choose Us</SketchHighlight>
           </h2>
 
@@ -48,7 +48,7 @@ export function WhyUseMySolarAnswer() {
           </h3>
 
           {/* Description */}
-          <p className="font-body text-[var(--text-body-on-white)] opacity-75">
+          <p className="body-large text-[var(--text-body-on-white)] opacity-75">
             Make informed decisions instantly. Our calculators provide precise
             data to help you transition to renewable energy seamlessly and
             profitably.
@@ -78,10 +78,10 @@ export function WhyUseMySolarAnswer() {
                 {/* Permanent divider line */}
                 <div className="w-10 h-[2px] bg-[var(--color-navy)]/10 mb-4 group-hover:bg-[var(--color-amber)] transition-colors duration-300" />
 
-                <h4 className="text-[1.1rem] font-bold mb-2 text-[var(--color-navy)]">
+                <h4 className="h4 mb-2 text-[var(--color-navy)]">
                   {benefit.title}
                 </h4>
-                <p className="font-body text-[var(--text-body-on-white)] opacity-75 leading-relaxed text-sm">
+                <p className="body-regular text-[var(--text-body-on-white)] opacity-75">
                   {benefit.description}
                 </p>
               </RevealOnScroll>

@@ -1,83 +1,90 @@
-import { Calculator, ClipboardCheck, PiggyBank } from "lucide-react";
-import { RevealOnScroll } from "@/app/components/ui/RevealOnScroll";
-import { SketchHighlight } from "@/app/components/ui/SketchHighlight";
+import Image from "next/image";
 
 export function HowItWorksSection() {
   const steps = [
     {
       num: "01",
       title: "Calculate Needs",
-      description:
-        "Use our free calculators to determine your exact solar needs and potential savings. No guesswork, just pure data based on your actual usage.",
-      icon: Calculator,
+      description: "Use our free calculators to determine your exact solar needs and potential savings.",
     },
     {
       num: "02",
       title: "Compare Quotes",
-      description:
-        "Get matched with top-rated local installers. We help you compare custom quotes apples-to-apples so you get the best equipment at the right price.",
-      icon: ClipboardCheck,
+      description: "Get matched with top-rated local installers and compare custom quotes.",
     },
     {
       num: "03",
       title: "Start Saving",
-      description:
-        "Enjoy drastically reduced energy bills, protection from rising utility rates, and a more sustainable lifestyle with your new solar system.",
-      icon: PiggyBank,
+      description: "Enjoy reduced energy bills and a more sustainable lifestyle with your new solar system.",
     },
   ];
 
   return (
-    <section className="w-full font-sans relative">
+    <section className="w-full overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header Area - Split Layout on Desktop */}
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 mb-16 lg:mb-24">
-          <RevealOnScroll className="max-w-2xl">
-            <span className="text-[var(--color-amber)] text-sm font-bold tracking-[0.2em] uppercase mb-4 block">
-              How It Works
-            </span>
-            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl text-[var(--text-h-on-navy)] leading-[1.1] tracking-tight">
-              Switching to Solar <br />
-              <SketchHighlight>Made Simple.</SketchHighlight>
-            </h2>
-          </RevealOnScroll>
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 lg:gap-12 items-center">
           
-          <RevealOnScroll delay="delay-100" className="max-w-md lg:pb-3">
-            <p className="font-body text-[var(--text-body-on-navy)] text-base sm:text-lg leading-relaxed">
-              Transitioning to renewable energy shouldn't be complicated. We've streamlined the entire journey into three clear steps, giving you complete confidence from start to finish.
-            </p>
-          </RevealOnScroll>
-        </div>
+          {/* Left Column - Heading & Diagonal Steps */}
+          <div className="flex flex-col lg:col-span-3 order-2 lg:order-1">
+            <div className="text-left mb-12">
+              <h2 className="h2 text-[var(--color-white)]">
+                Switching To Solar <br className="hidden lg:block"/> In 3 Easy Steps
+              </h2>
+            </div>
 
-        {/* Steps Grid - Minimalist Architectural Style */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16">
-          {steps.map((step, idx) => (
-            <RevealOnScroll key={idx} delay={`delay-${(idx + 1) * 100}`}>
-              <div className="group relative flex flex-col h-full">
-                {/* Top Border Line - Animates on hover */}
-                <div className="w-full h-px bg-[var(--border-divider-on-navy)] relative mb-8">
-                  <div className="absolute top-0 left-0 h-full bg-[var(--color-amber)] w-0 group-hover:w-full transition-all duration-700 ease-out"></div>
-                </div>
-
-                <div className="flex justify-between items-start mb-6">
-                  <span className="text-5xl lg:text-6xl font-light text-[var(--text-body-on-navy)] opacity-20 group-hover:opacity-100 group-hover:text-[var(--color-amber)] transition-colors duration-500 font-inter">
-                    {step.num}
-                  </span>
-                  <div className="w-12 h-12 rounded-full border border-[var(--border-divider-on-navy)] flex items-center justify-center group-hover:border-[var(--color-amber)] group-hover:bg-[var(--color-amber)]/10 transition-all duration-500">
-                    <step.icon className="w-5 h-5 text-[var(--text-h-on-navy)] group-hover:text-[var(--color-amber)] transition-colors duration-500" strokeWidth={1.5} />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-4 lg:gap-6">
+              {steps.map((step, idx) => (
+                <div 
+                  key={idx} 
+                  className={`grid grid-cols-2 gap-4 items-center md:flex md:flex-col md:items-start text-left group ${idx !== 0 ? 'md:border-l md:border-[var(--border-divider-on-navy)] md:pl-4 lg:pl-6' : 'md:pr-4 lg:pr-6'} ${idx === 1 ? 'md:mt-12 lg:mt-20' : idx === 2 ? 'md:mt-24 lg:mt-40' : ''}`}
+                >
+                  <div className="flex flex-row items-center gap-3 md:flex-col md:items-start md:gap-0 mb-0 md:mb-2 lg:mb-4">
+                    <div className="text-[var(--color-amber)] font-bold text-xl md:text-4xl lg:text-5xl md:mb-2 lg:mb-4">
+                      {step.num}
+                    </div>
+                    <h4 className="h4 text-[var(--color-white)] text-xl md:text-base lg:text-lg">{step.title}</h4>
                   </div>
+                  <p className="body-regular text-[var(--text-body-on-navy)]">
+                    {step.description}
+                  </p>
                 </div>
+              ))}
+            </div>
+          </div>
 
-                <h3 className="text-[1.3rem] font-bold text-[var(--text-h-on-navy)] mb-3">
-                  {step.title}
-                </h3>
-                <p className="font-body text-[var(--text-body-on-navy)] opacity-80 leading-relaxed text-[15px]">
-                  {step.description}
-                </p>
+          {/* Right Column - Image Grid */}
+          <div className="grid grid-cols-2 gap-4 h-[400px] md:h-[500px] lg:h-[600px] lg:col-span-2 order-1 lg:order-2">
+            {/* Col 1 - 1 Portrait Image */}
+            <div className="relative w-full h-full overflow-hidden shadow-2xl">
+              <Image 
+                src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=2072&auto=format&fit=crop" 
+                alt="Solar installation process 1" 
+                fill
+                className="object-cover"
+              />
+            </div>
+            {/* Col 2 - 2 Rows of Images */}
+            <div className="grid grid-rows-2 gap-4 h-full">
+              <div className="relative w-full h-full overflow-hidden shadow-2xl">
+                <Image 
+                  src="https://images.unsplash.com/photo-1592833159155-c62df1b65634?q=80&w=2069&auto=format&fit=crop" 
+                  alt="Solar installation process 2" 
+                  fill
+                  className="object-cover"
+                />
               </div>
-            </RevealOnScroll>
-          ))}
+              <div className="relative w-full h-full overflow-hidden shadow-2xl">
+                <Image 
+                  src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?q=80&w=2058&auto=format&fit=crop" 
+                  alt="Solar installation process 3" 
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          </div>
+
         </div>
 
       </div>

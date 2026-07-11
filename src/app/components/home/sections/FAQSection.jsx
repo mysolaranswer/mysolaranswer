@@ -32,15 +32,13 @@ export function FAQSection() {
   const [openIdx, setOpenIdx] = useState(0);
 
   return (
-    <section className="w-full bg-white">
+    <section className="w-full bg-[var(--bg-page)]">
       {/* Expanded to max-w-4xl for a better reading width on desktop */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <RevealOnScroll>
           <div className="text-center mb-8 lg:mb-12">
-            <span className="label text-amber tracking-wider uppercase mb-4 block">
-              Got Questions?
-            </span>
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl text-navy">
+           
+            <h2 className="h2">
               Frequently Asked <SketchHighlight>Questions</SketchHighlight>
             </h2>
           </div>
@@ -55,8 +53,8 @@ export function FAQSection() {
                   key={idx}
                   className={`border rounded-md overflow-hidden transition-all duration-300 shadow-sm ${
                     isOpen
-                      ? "bg-navy border-navy shadow-lg"
-                      : "bg-white border-navy/10 hover:border-amber/50 hover:bg-navy/[0.01]"
+                      ? "bg-[var(--color-navy)] border-[var(--color-navy)] shadow-lg"
+                      : "bg-[var(--bg-card-on-white)] border-[var(--color-navy)]/10 hover:border-[var(--color-amber)]/50 hover:bg-[var(--color-navy)]/[0.01]"
                   }`}
                 >
                   <button
@@ -66,8 +64,8 @@ export function FAQSection() {
                   >
                     {/* Reduced mobile font size (text-[15px]) to prevent aggressive wrapping */}
                     <h3
-                      className={`font-heading text-[15px] sm:text-lg lg:text-xl pr-2 sm:pr-8 leading-snug sm:leading-relaxed ${
-                        isOpen ? "text-white" : "text-navy"
+                      className={`font-sans font-bold text-[15px] sm:text-lg lg:text-xl pr-2 sm:pr-8 leading-snug sm:leading-relaxed ${
+                        isOpen ? "text-[var(--color-white)]" : "text-[var(--color-navy)]"
                       }`}
                     >
                       {faq.question}
@@ -77,8 +75,8 @@ export function FAQSection() {
                     <div
                       className={`flex-shrink-0 w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-transform duration-300 mt-0.5 sm:mt-0 ${
                         isOpen
-                          ? "text-amber rotate-180"
-                          : "text-navy/50 rotate-0"
+                          ? "text-[var(--color-amber)] rotate-180"
+                          : "text-[var(--color-navy)]/50 rotate-0"
                       }`}
                     >
                       {isOpen ? (
@@ -97,7 +95,7 @@ export function FAQSection() {
 
                   {isOpen && (
                     <div className="px-5 pb-5 pt-0 sm:px-8 sm:pb-8 animate-fade-in-up">
-                      <p className="font-body text-[14px] sm:text-base text-white/80 leading-relaxed max-w-3xl">
+                      <p className="body-regular text-[var(--color-white)]/80 max-w-3xl">
                         {faq.answer}
                       </p>
                     </div>

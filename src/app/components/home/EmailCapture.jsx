@@ -71,8 +71,8 @@ export function EmailCapture() {
             aria-label="Email address"
             className={`
               flex-grow px-4 py-3 rounded-xl border text-sm font-medium outline-none transition-all
-              placeholder:text-gray-400 text-navy bg-white
-              focus:ring-2 focus:ring-amber/40 focus:border-amber
+              placeholder:text-gray-400 text-[var(--color-navy)] bg-white
+              focus:ring-2 focus:ring-[var(--color-amber)]/40 focus:border-[var(--color-amber)]
               disabled:opacity-60 disabled:cursor-not-allowed
               ${status === "error" 
                 ? "border-red-300 focus:ring-red-200 focus:border-red-400" 
@@ -84,7 +84,7 @@ export function EmailCapture() {
             type="submit"
             disabled={status === "loading" || !email.trim()}
             className="
-              px-6 py-3 rounded-xl bg-amber text-black label
+              px-6 py-3 rounded-xl bg-[var(--color-amber)] text-[var(--color-black)] label
               hover:opacity-90 active:scale-95 transition-all
               disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100
               flex items-center justify-center gap-2 whitespace-nowrap

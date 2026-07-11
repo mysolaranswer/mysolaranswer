@@ -34,7 +34,7 @@ export function BlogPreviewSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <RevealOnScroll className="text-center mb-16">
-          <h2 className="font-heading text-[var(--color-navy)] max-w-2xl mx-auto leading-tight">
+          <h2 className="h2">
             Stay Informed With Expert Insights, Tips About <SketchHighlight>Solar Energy</SketchHighlight>
           </h2>
         </RevealOnScroll>
@@ -56,16 +56,16 @@ export function BlogPreviewSection() {
               </div>
               
               <div className="flex items-center gap-2 mb-3">
-                <span className="text-amber text-xs font-bold uppercase tracking-wide">
+                <span className="text-[var(--color-amber)] text-xs font-bold uppercase tracking-wide">
                   {article.category}
                 </span>
-                <span className="text-gray-400 text-xs">•</span>
-                <span className="text-gray-500 text-xs">
+                <span className="text-[var(--border-divider)] text-xs">•</span>
+                <span className="text-[var(--text-body-on-white)]/60 text-xs">
                   {article.date}
                 </span>
               </div>
               
-              <h3 className="font-sub-heading !text-lg md:!text-xl text-black  transition-colors">
+              <h3 className="h4 text-[var(--color-black)] transition-colors">
                 {article.title}
               </h3>
             </Link>

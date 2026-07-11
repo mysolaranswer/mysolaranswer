@@ -33,30 +33,30 @@
     --border-divider-on-navy: rgba(255, 255, 255, 0.15);
 
     /* Typography Sizes */
-    --font-size-h1-desktop: 3.125rem; /* 50px */
-    --font-size-h1-tablet: 2.5rem; /* 40px */
-    --font-size-h1-mobile: 2.1875rem; /* 35px */
+    --font-size-h1-desktop: 50px;
+    --font-size-h1-tablet: 40px;
+    --font-size-h1-mobile: 35px;
     
-    --font-size-h2-desktop: 2.5rem; /* 40px */
-    --font-size-h2-tablet: 2rem; /* 32px */
-    --font-size-h2-mobile: 1.75rem; /* 28px */
+    --font-size-h2-desktop: 40px;
+    --font-size-h2-tablet: 32px;
+    --font-size-h2-mobile: 28px;
     
-    --font-size-h3-desktop: 1.75rem; /* 28px */
-    --font-size-h3-tablet: 1.5rem; /* 24px */
-    --font-size-h3-mobile: 1.25rem; /* 20px */
+    --font-size-h3-desktop: 28px;
+    --font-size-h3-tablet: 24px;
+    --font-size-h3-mobile: 20px;
     
-    --font-size-h4: 1.25rem; /* 20px */
+    --font-size-h4: 20px;
     
-    --font-size-body-large-desktop: 1rem; /* 16px */
-    --font-size-body-large-mobile: 1rem; /* 16px */
+    --font-size-body-large-desktop: 16px;
+    --font-size-body-large-mobile: 16px;
     
-    --font-size-body-regular: 0.875rem; /* 14px */
-    --font-size-label: 0.75rem; /* 12px */
+    --font-size-body-regular: 14px;
+    --font-size-label: 12px;
     
     /* Button sizing */
-    --btn-padding-y: 0.75rem; /* 12px */
-    --btn-padding-x: 1.75rem; /* 28px */
-    --btn-font-size: 1rem; /* 16px */
+    --btn-padding-y: 12px;
+    --btn-padding-x: 28px;
+    --btn-font-size: 16px;
   }
 
   body {
@@ -70,7 +70,7 @@
     font-family: var(--font-sans);
     font-weight: 700;
     text-transform: capitalize;
-    letter-spacing: -0.125em; /* -2px */
+    letter-spacing: -2px;
     line-height: 1.1;
     font-size: var(--font-size-h1-mobile);
     color: var(--text-h-on-white);
@@ -78,19 +78,19 @@
   @media (min-width: 768px) { h1, .h1 { font-size: var(--font-size-h1-tablet); } }
   @media (min-width: 1024px) { h1, .h1 { font-size: var(--font-size-h1-desktop); } }
 
-  .font-heading {
+  h2, .h2 {
     font-family: var(--font-sans);
     font-weight: 700;
     text-transform: capitalize;
-    letter-spacing: -0.0625em; /* -1px */
+    letter-spacing: -1px;
     line-height: 1.2;
     font-size: var(--font-size-h2-mobile);
     color: var(--text-h-on-white);
   }
-  @media (min-width: 768px) { .font-heading { font-size: var(--font-size-h2-tablet); } }
-  @media (min-width: 1024px) { .font-heading { font-size: var(--font-size-h2-desktop); } }
+  @media (min-width: 768px) { h2, .h2 { font-size: var(--font-size-h2-tablet); } }
+  @media (min-width: 1024px) { h2, .h2 { font-size: var(--font-size-h2-desktop); } }
 
-  .font-sub-heading {
+  h3, .h3 {
     font-family: var(--font-sans);
     font-weight: 600;
     text-transform: capitalize;
@@ -99,8 +99,8 @@
     font-size: var(--font-size-h3-mobile);
     color: var(--text-h-on-white);
   }
-  @media (min-width: 768px) { .font-sub-heading { font-size: var(--font-size-h3-tablet); } }
-  @media (min-width: 1024px) { .font-sub-heading { font-size: var(--font-size-h3-desktop); } }
+  @media (min-width: 768px) { h3, .h3 { font-size: var(--font-size-h3-tablet); } }
+  @media (min-width: 1024px) { h3, .h3 { font-size: var(--font-size-h3-desktop); } }
 
   h4, .h4 {
     font-family: var(--font-inter);
@@ -112,13 +112,13 @@
   }
 
   /* Body Text */
-  .font-body {
+  .body-large {
     font-family: var(--font-sans);
     font-weight: 400;
     line-height: 1.5;
     font-size: var(--font-size-body-large-mobile);
   }
-  @media (min-width: 768px) { .font-body { font-size: var(--font-size-body-large-desktop); } }
+  @media (min-width: 768px) { .body-large { font-size: var(--font-size-body-large-desktop); } }
 
   p, .body-regular {
     font-family: var(--font-sans);
@@ -146,70 +146,20 @@
     color: var(--text-body-on-navy);
   }
   .dark-section h1, .dark-section .h1, 
-  .dark-section .font-heading,
-  .dark-section .font-sub-heading {
+  .dark-section h2, .dark-section .h2, 
+  .dark-section h3, .dark-section .h3 {
     color: var(--text-h-on-navy);
   }
 }
 
 @layer utilities {
-  /* Base reveal state — elements start invisible */
-  .reveal {
-    opacity: 0;
-    transform: translateY(1.5rem); /* 24px */
-    will-change: opacity, transform;
-    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .reveal-left {
-    opacity: 0;
-    transform: translateX(-2rem); /* -32px */
-    will-change: opacity, transform;
-    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .reveal-right {
-    opacity: 0;
-    transform: translateX(2rem); /* 32px */
-    will-change: opacity, transform;
-    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .reveal-scale {
-    opacity: 0;
-    transform: scale(0.96);
-    will-change: opacity, transform;
-    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  /* Triggered state */
-  .in-view {
-    opacity: 1 !important;
-    transform: none !important;
-    will-change: auto;
-  }
-
-  /* Stagger delays */
-  .delay-100 { transition-delay: 100ms; }
-  .delay-200 { transition-delay: 200ms; }
-  .delay-300 { transition-delay: 300ms; }
-  .delay-400 { transition-delay: 400ms; }
-  .delay-500 { transition-delay: 500ms; }
-
-  /* Legacy keyframe class (kept for compatibility) */
   .animate-fade-in-up {
-    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 }
 
 @keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(1.875rem); } /* 30px */
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes heroSlideIn {
-  0% { opacity: 0; transform: translateY(1rem); } /* 16px */
+  0% { opacity: 0; transform: translateY(30px); }
   100% { opacity: 1; transform: translateY(0); }
 }
 

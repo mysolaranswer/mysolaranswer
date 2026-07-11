@@ -31,11 +31,11 @@ export default function Home() {
       </div>
 
       {/* Dark section — bg applied here so it stretches full-width */}
-      <div className={`${SP} dark-section bg-navy`} id="how-it-works">
+      <div className={`${SP} dark-section bg-[var(--color-navy)]`} id="how-it-works">
         <HowItWorksSection />
       </div>
 
-      <div className={`${SP} border-t border-[var(--border-divider)] bg-white`} id="faq">
+      <div className={`${SP} border-t border-[var(--border-divider)] bg-[var(--bg-page)]`} id="faq">
         <FAQSection />
       </div>
 
