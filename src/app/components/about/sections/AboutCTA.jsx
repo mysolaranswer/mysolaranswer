@@ -3,7 +3,7 @@ import { PrimaryButton } from '../../ui/buttons/PrimaryButton';
 
 export default function AboutCTA() {
   return (
-    <section className="relative w-full py-24 lg:py-32 overflow-hidden flex items-center justify-center">
+    <section className="relative w-full overflow-hidden flex items-center justify-center">
       {/* Background Image with Overlay */}
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"

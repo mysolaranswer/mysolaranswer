@@ -3,7 +3,7 @@ import { RevealOnScroll } from "@/app/components/ui/RevealOnScroll";
 
 export default function AboutHero() {
   return (
-    <section className="w-full min-h-[calc(100vh-5rem)] bg-white flex items-start lg:items-center pt-6 pb-14 lg:py-12">
+    <section className="w-full min-h-[calc(100vh-5rem)] bg-white flex items-start lg:items-center">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Increased mobile gap from gap-5 to gap-8 for better breathing room */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 lg:gap-24 items-center">

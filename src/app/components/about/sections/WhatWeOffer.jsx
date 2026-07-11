@@ -31,7 +31,7 @@ const tools = [
 
 export default function WhatWeOffer() {
   return (
-    <section className="w-full dark-section py-20 lg:py-32">
+    <section className="w-full dark-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-16 gap-8">

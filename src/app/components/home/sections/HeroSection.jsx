@@ -4,15 +4,14 @@ import { QuickEstimateCalculator } from "../QuickEstimateCalculator";
 
 export function HeroSection() {
   return (
-    <section className="w-full lg:min-h-[calc(100vh-5rem)] bg-white flex items-start lg:items-center border-b border-slate-200 font-sans pt-6 pb-8 lg:py-12">
+    <section className="w-full lg:min-h-[calc(100vh-5rem)] bg-white flex items-start lg:items-center border-b border-slate-200 font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-16 lg:gap-24 items-center">
           
           {/* Left Column */}
           <div className="flex flex-col items-start max-w-xl">
             <h1
-              className="text-2xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-navy 
-            leading-[1.15] md:leading-[1.1] mb-3 md:mb-6 tracking-tight
+              className="h1 mb-3 md:mb-6 tracking-tight
             [animation:heroSlideIn_0.8s_cubic-bezier(0.16,1,0.3,1)_0.1s_both]"
             >
               Free Solar Calculators.

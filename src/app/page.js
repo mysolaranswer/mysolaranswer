@@ -12,7 +12,7 @@ export const metadata = {
 };
 
 // Single source of truth for section spacing across the home page
-const SP = "py-16 lg:py-24";
+const SP = "py-12 lg:py-16";
 
 export default function Home() {
   return (
