@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
-import { RevealOnScroll } from "@/app/components/ui/RevealOnScroll";
 import { SketchHighlight } from "@/app/components/ui/SketchHighlight";
 
 export function FAQSection({ faqs = [] }) {
@@ -13,16 +12,13 @@ export function FAQSection({ faqs = [] }) {
     <section className="w-full bg-[var(--bg-page)]">
       {/* Expanded to max-w-4xl for a better reading width on desktop */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <RevealOnScroll>
           <div className="text-center mb-8 lg:mb-12">
            
             <h2 className="h2">
               Frequently Asked <SketchHighlight>Questions</SketchHighlight>
             </h2>
           </div>
-        </RevealOnScroll>
 
-        <RevealOnScroll delay="delay-100">
           <div className="flex flex-col gap-3 sm:gap-4">
             {faqs.map((faq, idx) => {
               const isOpen = openIdx === idx;
@@ -72,7 +68,7 @@ export function FAQSection({ faqs = [] }) {
                   </button>
 
                   {isOpen && (
-                    <div className="px-5 pb-5 pt-0 sm:px-8 sm:pb-8 animate-fade-in-up">
+                    <div className="px-5 pb-5 pt-0 sm:px-8 sm:pb-8">
                       <p className="body-regular text-[var(--color-white)]/80 max-w-3xl">
                         {faq.answer}
                       </p>
@@ -82,7 +78,6 @@ export function FAQSection({ faqs = [] }) {
               );
             })}
           </div>
-        </RevealOnScroll>
       </div>
     </section>
   );

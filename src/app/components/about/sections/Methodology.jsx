@@ -1,5 +1,4 @@
 import { Database, BadgeInfo, CheckCircle2 } from "lucide-react";
-import { RevealOnScroll } from "@/app/components/ui/RevealOnScroll";
 import { SketchHighlight } from "@/app/components/ui/SketchHighlight";
 
 export default function Methodology() {
@@ -15,7 +14,7 @@ export default function Methodology() {
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <RevealOnScroll>
+          <div>
             <span className="label text-amber tracking-wider uppercase mb-4 block">
               Transparency First
             </span>
@@ -29,13 +28,13 @@ export default function Methodology() {
                 </div>
               </span>
             </h2>
-          </RevealOnScroll>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
           
           {/* Card 1: Methodology (Dark / Authoritative) */}
-          <RevealOnScroll animation="reveal-left">
+          <div>
             <div className="bg-navy h-full rounded-2xl p-8 lg:p-12 shadow-2xl relative overflow-hidden flex flex-col justify-between group">
               {/* Decorative background glow */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-amber/10 rounded-full blur-3xl -mr-20 -mt-20 transition-opacity group-hover:opacity-100 opacity-50" />
@@ -67,10 +66,10 @@ export default function Methodology() {
                 </div>
               </div>
             </div>
-          </RevealOnScroll>
+          </div>
 
           {/* Card 2: Disclaimer (Light / Transparent) */}
-          <RevealOnScroll animation="reveal-right" delay="delay-100">
+          <div>
             <div className="bg-white h-full rounded-2xl p-8 lg:p-12 border-2 border-navy/5 shadow-lg hover:border-amber/50 transition-colors duration-300 flex flex-col justify-center">
               
               <div className="w-14 h-14 bg-amber/10 border border-amber/20 rounded-xl flex items-center justify-center mb-8">
@@ -98,7 +97,7 @@ export default function Methodology() {
               </div>
 
             </div>
-          </RevealOnScroll>
+          </div>
 
         </div>
       </div>

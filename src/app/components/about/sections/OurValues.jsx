@@ -1,7 +1,6 @@
 import React from 'react';
 import { ShieldCheck, Unlock, ThumbsUp } from 'lucide-react';
 import { SketchHighlight } from "@/app/components/ui/SketchHighlight";
-import { RevealOnScroll } from "@/app/components/ui/RevealOnScroll";
 
 const values = [
   {
@@ -28,7 +27,7 @@ export default function OurValues() {
         
         {/* Header Section */}
         {/* Widened to max-w-4xl so the desktop text has plenty of room to stretch */}
-        <RevealOnScroll className="text-center max-w-4xl mx-auto mb-12 lg:mb-16 flex flex-col items-center">
+        <div className="text-center max-w-4xl mx-auto mb-12 lg:mb-16 flex flex-col items-center">
           
           {/* Added sm:whitespace-nowrap to strictly enforce 1 line on desktop */}
           <h2 className="font-heading text-[var(--color-navy)] tracking-tight mb-4 sm:mb-6 text-[32px] sm:text-4xl lg:text-5xl font-bold leading-[1.15] sm:leading-tight sm:whitespace-nowrap">
@@ -39,14 +38,14 @@ export default function OurValues() {
           <p className="font-body text-[var(--text-body-on-white)] opacity-75 text-base md:text-lg max-w-2xl whitespace-normal">
             At MySolarAnswer, our values are the driving force behind everything. We want to empower homeowners, not exploit them.
           </p>
-        </RevealOnScroll>
+        </div>
 
         {/* Features: High-Contrast Default State for Mobile & Desktop */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6">
           {values.map((value, idx) => {
             const delays = ["delay-100", "delay-200", "delay-300"];
             return (
-              <RevealOnScroll key={idx} delay={delays[idx]} className="group relative flex flex-col p-6 sm:p-7 rounded-md bg-gradient-to-b from-[var(--color-white)] to-[var(--color-navy)]/[0.03] border border-[var(--border-divider)] hover:border-[var(--color-amber)]/40 hover:shadow-[0_16px_40px_-12px_rgba(13,27,42,0.12)] transition-all duration-500 overflow-hidden">
+              <div key={idx} className="group relative flex flex-col p-6 sm:p-7 rounded-md bg-gradient-to-b from-[var(--color-white)] to-[var(--color-navy)]/[0.03] border border-[var(--border-divider)] hover:border-[var(--color-amber)]/40 hover:shadow-[0_16px_40px_-12px_rgba(13,27,42,0.12)] transition-all duration-500 overflow-hidden">
                 {/* Brand Ambient Glow on Hover */}
                 <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-amber)]/0 via-transparent to-[var(--color-amber)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0" />
 
@@ -70,7 +69,7 @@ export default function OurValues() {
                 <p className="font-body text-[var(--text-body-on-white)] opacity-75 leading-relaxed text-sm relative z-10">
                   {value.description}
                 </p>
-              </RevealOnScroll>
+              </div>
             );
           })}
         </div>

@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { RevealOnScroll } from "@/app/components/ui/RevealOnScroll";
 
 export default function AboutHero() {
   return (
@@ -10,7 +9,7 @@ export default function AboutHero() {
           
           {/* Left Column: Text Content */}
           <div className="flex flex-col items-start max-w-xl order-1">
-            <RevealOnScroll animation="reveal-left">
+            <div>
               {/* 
                 FIX 1: Removed `className="hidden lg:block"` from the <br />. 
                 Now "Not a sales pitch." will ALWAYS start on a new line, 
@@ -37,12 +36,12 @@ export default function AboutHero() {
                   </p>
                 </div>
               </div>
-            </RevealOnScroll>
+            </div>
           </div>
 
           {/* Right Column: Image */}
           <div className="w-full relative z-10 order-2">
-            <RevealOnScroll animation="reveal-right" delay="delay-100">
+            <div>
               {/* FIX 4: Changed aspect-[2/1] back to aspect-[16/9] so it looks like a real photo */}
               <div className="relative w-full aspect-[16/9] lg:aspect-[5/4] rounded-2xl sm:rounded-3xl overflow-hidden border border-navy/10 shadow-2xl">
                 <Image
@@ -55,7 +54,7 @@ export default function AboutHero() {
                 />
                 <div className="absolute inset-0 bg-navy/10 mix-blend-multiply pointer-events-none"></div>
               </div>
-            </RevealOnScroll>
+            </div>
           </div>
 
         </div>

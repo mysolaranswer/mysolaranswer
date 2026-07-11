@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Battery, TrendingUp, Home, Sun, ArrowRight, PiggyBank, CreditCard } from "lucide-react";
-import { RevealOnScroll } from "@/app/components/ui/RevealOnScroll";
 import { SketchHighlight } from "@/app/components/ui/SketchHighlight";
 
 export function CalculatorsGridSection() {
@@ -54,7 +53,7 @@ export function CalculatorsGridSection() {
           
           {/* Left Column: Context */}
           <div className="w-full lg:w-5/12 lg:sticky lg:top-32 flex flex-col justify-center items-start">
-            <RevealOnScroll animation="reveal-left">
+            <div>
               <h2 className="h2 mb-2">
                 <SketchHighlight>Calculate your</SketchHighlight>
               </h2>
@@ -76,19 +75,14 @@ export function CalculatorsGridSection() {
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform duration-300 relative z-10" strokeWidth={2.5} />
                 <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-[var(--color-amber)] origin-left transition-transform duration-300 ease-out scale-x-0 group-hover:scale-x-100" />
               </Link>
-            </RevealOnScroll>
+            </div>
           </div>
 
           {/* Right Column: Grid */}
           <div className="w-full lg:w-7/12">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 lg:gap-5">
               {calculators.map((calc, idx) => (
-                <RevealOnScroll 
-                  key={idx} 
-                  delay={`delay-${(idx % 2 === 0 ? 1 : 2) * 100}`} 
-                >
-                  <CalcCard calc={calc} />
-                </RevealOnScroll>
+                <CalcCard key={idx} calc={calc} />
               ))}
             </div>
           </div>

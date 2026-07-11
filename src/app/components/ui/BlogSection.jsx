@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { SketchHighlight } from "@/app/components/ui/SketchHighlight";
-import { RevealOnScroll } from "@/app/components/ui/RevealOnScroll";
 
 export function BlogSection({ articles = [], limit, showHeading = false, isRelated = false }) {
   const displayedArticles = limit ? articles.slice(0, limit) : articles;
@@ -11,17 +10,17 @@ export function BlogSection({ articles = [], limit, showHeading = false, isRelat
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {showHeading && !isRelated && (
-          <RevealOnScroll className="text-center mb-16">
+          <div className="text-center mb-16">
             <h2 className="h2">
               Stay Informed With Expert Insights, Tips About <SketchHighlight>Solar Energy</SketchHighlight>
             </h2>
-          </RevealOnScroll>
+          </div>
         )}
 
         {isRelated && (
-          <RevealOnScroll className="text-center mb-16">
+          <div className="text-center mb-16">
             <h2 className="h2 mt-2 text-[var(--color-black)]">Related Articles</h2>
-          </RevealOnScroll>
+          </div>
         )}
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
