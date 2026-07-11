@@ -4,6 +4,7 @@ import { HowItWorksSection } from "./components/home/sections/HowItWorksSection"
 import { FAQSection } from "./components/ui/FAQSection";
 import { homeFaqs } from "./components/home/homeFaqs";
 import { BlogSection } from "./components/ui/BlogSection";
+import { blogs } from "./data/blogs";
 import { CTASection } from "./components/home/sections/CTASection";
 import { WhyUseMySolarAnswer } from "./components/home/sections/WhyUseMySolarAnswer";
 
@@ -41,7 +42,7 @@ export default function Home() {
       </div>
 
       <div className={`${SP} border-t border-[var(--border-divider)]`}>
-        <BlogSection limit={3} showHeading={true} />
+        <BlogSection articles={blogs} limit={3} showHeading={true} />
       </div>
 
       <div className={`${SP} border-t border-[var(--border-divider)]`}>

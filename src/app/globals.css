@@ -167,3 +167,77 @@
   background-color: var(--color-amber);
   color: white;
 }
+
+/* Blog Content Styles */
+@layer components {
+  .blog-content {
+    color: var(--color-navy);
+    line-height: 1.75;
+  }
+  .blog-content p {
+    font-size: var(--font-size-body-large-mobile);
+    line-height: 1.5;
+  }
+  @media (min-width: 768px) {
+    .blog-content p { font-size: var(--font-size-body-large-desktop); }
+  }
+  .blog-content > * + * {
+    margin-top: 1.5em;
+  }
+  .blog-content h2 {
+    font-size: var(--font-size-h2-mobile);
+    font-weight: 700;
+    margin-top: 2.5em;
+    margin-bottom: 1em;
+    line-height: 1.2;
+    letter-spacing: -1px;
+    color: var(--color-navy);
+  }
+  @media (min-width: 768px) {
+    .blog-content h2 { font-size: var(--font-size-h2-desktop); }
+  }
+  .blog-content h3 {
+    font-size: var(--font-size-h3-mobile);
+    font-weight: 600;
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+    color: var(--color-navy);
+  }
+  @media (min-width: 768px) {
+    .blog-content h3 { font-size: var(--font-size-h3-desktop); }
+  }
+  .blog-content strong {
+    font-weight: 700;
+    color: var(--color-black);
+  }
+  .blog-content ul {
+    list-style-type: disc;
+    padding-left: 1.5em;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+  }
+  .blog-content li {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+  .blog-content blockquote {
+    background-color: #f4f6ec; /* matching the newsletter light yellow/green color per screenshots */
+    border-radius: 0.5rem;
+    padding: 2rem;
+    margin-top: 2.5em;
+    margin-bottom: 2.5em;
+  }
+  .blog-content blockquote p {
+    font-size: 1.125rem;
+    font-style: italic;
+    color: var(--color-navy);
+  }
+  .blog-content blockquote cite {
+    display: block;
+    margin-top: 1rem;
+    font-weight: 700;
+    font-size: 0.875rem;
+    font-style: normal;
+    color: var(--color-black);
+  }
+}

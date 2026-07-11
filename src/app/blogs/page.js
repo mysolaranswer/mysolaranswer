@@ -1,5 +1,6 @@
 import { BlogSection } from "../components/ui/BlogSection";
 import { NewsletterSection } from "../components/ui/NewsletterSection";
+import { blogs } from "../data/blogs";
 import Image from "next/image";
 
 export const metadata = {
@@ -42,7 +43,7 @@ export default function BlogsPage() {
 
       {/* Blogs Grid Section */}
       <div className="py-16 lg:py-24">
-        <BlogSection />
+        <BlogSection articles={blogs} />
       </div>
 
       {/* Newsletter Section */}
