@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Battery, TrendingUp, Home, Sun, ArrowRight, PiggyBank, CreditCard } from "lucide-react";
 import { RevealOnScroll } from "@/app/components/ui/RevealOnScroll";
+import { SketchHighlight } from "@/app/components/ui/SketchHighlight";
 
 export function CalculatorsGridSection() {
   const calculators = [
@@ -54,10 +55,12 @@ export function CalculatorsGridSection() {
           {/* Left Column: Context */}
           <div className="w-full lg:w-5/12 lg:sticky lg:top-32 flex flex-col justify-center items-start">
             <RevealOnScroll animation="reveal-left">
-              <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-heading font-extrabold text-navy leading-[1.1] tracking-[-0.02em] mb-6">
-                Calculate your <br className="hidden lg:block"/>
-                <span className="text-amber">solar future.</span>
+              <h2 className="font-heading text-[var(--color-navy)] tracking-tight mb-6">
+                <SketchHighlight>Calculate your</SketchHighlight>
               </h2>
+              <h3 className="font-sub-heading mb-4 text-[var(--color-navy)] font-medium">
+                <span className="text-[var(--color-amber)]">solar future.</span>
+              </h3>
               
               <div className="pl-5 border-l-2 border-amber/50 mb-8 sm:mb-10">
                 <p className="font-body text-[15px] sm:text-lg text-navy/70 leading-relaxed max-w-md">
@@ -101,7 +104,7 @@ function CalcCard({ calc }) {
   return (
     <Link 
       href={calc.href}
-      className="group relative flex flex-col p-4 sm:p-7 lg:p-8 rounded-2xl bg-white border border-navy/10 hover:border-amber/40 hover:shadow-[0_16px_40px_-12px_rgba(13,27,42,0.12)] transition-all duration-500 overflow-hidden"
+      className="group relative flex flex-col p-4 sm:p-7 lg:p-8 rounded-md bg-white border border-navy/10 hover:border-amber/40 hover:shadow-[0_16px_40px_-12px_rgba(13,27,42,0.12)] transition-all duration-500 overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-amber/0 via-transparent to-amber/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0" />
 

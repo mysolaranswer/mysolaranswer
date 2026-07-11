@@ -1,6 +1,7 @@
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Navbar } from "@/app/components/layout/Navbar";
 import { Footer } from "@/app/components/layout/Footer";
 
@@ -61,6 +62,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <Analytics />
+        <SpeedInsights/>
         <Footer />
       </body>
     </html>

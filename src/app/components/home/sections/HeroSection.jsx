@@ -4,7 +4,7 @@ import { QuickEstimateCalculator } from "../QuickEstimateCalculator";
 
 export function HeroSection() {
   return (
-    <section className="w-full min-h-[calc(100vh-5rem)] bg-white flex items-start lg:items-center border-b border-slate-200 font-sans pt-6 pb-8 lg:py-12">
+    <section className="w-full lg:min-h-[calc(100vh-5rem)] bg-white flex items-start lg:items-center border-b border-slate-200 font-sans pt-6 pb-8 lg:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-16 lg:gap-24 items-center">
           
@@ -40,7 +40,7 @@ export function HeroSection() {
           </div>
 
           {/* Right Column — Quick Estimate Calculator */}
-          <div className="w-full relative z-10">
+          <div className="w-full lg:w-[80%] lg:mx-auto relative z-10">
             <div className="absolute -bottom-6 -left-6 w-32 h-32 border-l-4 border-b-4 border-[#0a192f] pointer-events-none hidden lg:block"></div>
             <QuickEstimateCalculator />
           </div>

@@ -53,7 +53,7 @@ export function FAQSection() {
               return (
                 <div
                   key={idx}
-                  className={`border rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300 shadow-sm ${
+                  className={`border rounded-md overflow-hidden transition-all duration-300 shadow-sm ${
                     isOpen
                       ? "bg-navy border-navy shadow-lg"
                       : "bg-white border-navy/10 hover:border-amber/50 hover:bg-navy/[0.01]"
