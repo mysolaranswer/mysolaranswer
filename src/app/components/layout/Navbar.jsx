@@ -74,7 +74,7 @@ export function Navbar() {
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center">
             <SecondaryButton href="/calculators">
-              Explore Calculators
+              Explore
             </SecondaryButton>
           </div>
 

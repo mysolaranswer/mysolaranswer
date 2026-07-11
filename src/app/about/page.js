@@ -3,9 +3,6 @@ import TheProblem from "../components/about/sections/TheProblem";
 import Methodology from "../components/about/sections/Methodology";
 import WhoWeAre from "../components/about/sections/WhoWeAre";
 import OurValues from "../components/about/sections/OurValues";
-
-// Imported from Home
-import { CalculatorsGridSection } from "../components/home/sections/CalculatorsGridSection";
 import { CTASection } from "../components/home/sections/CTASection";
 
 export const metadata = {
@@ -13,29 +10,37 @@ export const metadata = {
   description: "We built MySolarAnswer to provide clear, unbiased solar estimates without the pushy sales calls.",
 };
 
+// Single source of truth for section spacing across the about page
+const SP = "py-16 lg:py-24";
+
 export default function AboutPage() {
   return (
-    <div className="flex flex-col w-full bg-[var(--bg-main)] min-h-screen">
-      {/* 1. Hero / Mission Statement */}
+    <div className="flex flex-col w-full bg-[var(--bg-page)] min-h-screen">
+
+      {/* Hero — manages its own viewport-height layout */}
       <AboutHero />
 
-      {/* 2. The Problem We Solve & 7. Accuracy Disclaimer */}
-      <TheProblem />
+      {/* All content sections share the same vertical rhythm */}
+      <div className={`${SP} border-t border-[var(--border-divider)]`}>
+        <TheProblem />
+      </div>
 
-      {/* 5. Who We Are & 8. Stats Bar */}
-      <WhoWeAre />
+      <div className={`${SP} border-t border-[var(--border-divider)]`}>
+        <WhoWeAre />
+      </div>
 
-      {/* 6. Our Values / Why Free */}
-      <OurValues />
+      <div className={`${SP} border-t border-[var(--border-divider)]`}>
+        <OurValues />
+      </div>
 
-      {/* 3. What We Offer (Tool Overview - Replaced by CalculatorsGridSection) */}
-      <CalculatorsGridSection />
+      <div className={`${SP} border-t border-[var(--border-divider)]`}>
+        <Methodology />
+      </div>
 
-      {/* 4. How Our Calculators Work (Methodology) */}
-      <Methodology />
+      <div className={`${SP} border-t border-[var(--border-divider)]`}>
+        <CTASection />
+      </div>
 
-      {/* 9. CTA (Replaced by Home CTASection) */}
-      <CTASection />
     </div>
   );
 }

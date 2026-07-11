@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Battery, TrendingUp, Home, Sun, ArrowRight, DollarSign, Cpu } from "lucide-react";
+import { Battery, TrendingUp, Home, Sun, ArrowRight, PiggyBank, CreditCard } from "lucide-react";
+import { RevealOnScroll } from "@/app/components/ui/RevealOnScroll";
 
 export function CalculatorsGridSection() {
   const calculators = [
@@ -8,7 +9,7 @@ export function CalculatorsGridSection() {
       description: "Size your battery bank correctly based on your daily energy consumption and desired autonomy.",
       icon: Battery,
       href: "/calculators/solar-battery-calculator",
-      tag: "Most Popular",
+      tag: "Popular",
     },
     {
       title: "ROI Calculator",
@@ -29,62 +30,62 @@ export function CalculatorsGridSection() {
       href: "/calculators/how-many-solar-panels",
     },
     {
-      title: "System Cost Estimator",
-      description: "Get a comprehensive breakdown of equipment, labor, and permit costs for your solar installation.",
-      icon: DollarSign,
-      href: "/calculators/system-cost-estimator",
+      title: "Savings Calculator",
+      description: "Calculate your exact monthly and lifetime utility bill reductions after making the switch.",
+      icon: PiggyBank,
+      href: "/calculators/solar-savings-calculator",
     },
     {
-      title: "Inverter Calculator",
-      description: "Find the perfect string or micro-inverter setup to maximize your panel efficiency.",
-      icon: Cpu,
-      href: "/calculators/inverter-calculator",
+      title: "Financing Calculator",
+      description: "Compare cash purchases, solar loans, and leases to find the smartest way to fund your system.",
+      icon: CreditCard,
+      href: "/calculators/solar-financing-calculator",
     },
   ];
 
   return (
     <section 
-      className="w-full bg-[var(--bg-page)] py-16 lg:py-24 border-t border-[var(--border-divider)] font-sans relative" 
+      className="w-full bg-white font-sans relative" 
       id="calculators"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-12 items-start">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-12 items-start">
           
-          {/* Left Column: Context (Strict & Editorial) */}
+          {/* Left Column: Context */}
           <div className="w-full lg:w-5/12 lg:sticky lg:top-32 flex flex-col justify-center items-start">
-            
-            <h2 className="font-heading text-[var(--color-navy)] mb-6">
-              Calculate your <br className="hidden lg:block"/>
-              <span className="text-[var(--color-amber)]">solar future.</span>
-            </h2>
-            
-            {/* Left border anchor line for editorial feel */}
-            <div className="pl-5 border-l-2 border-[var(--color-amber)] mb-10">
-              <p className="font-body text-[var(--text-body-on-white)] opacity-75 max-w-md">
-                Take the guesswork out of your solar journey. Use our professional-grade software tools to plan, size, and estimate your perfect setup in seconds—absolutely free.
-              </p>
-            </div>
-
-            {/* Explore All CTA with Simple Underline */}
-            <Link 
-              href="/calculators"
-              className="group relative inline-flex items-center gap-2 text-[var(--color-navy)] hover:text-[var(--color-amber)] transition-colors duration-300 w-max font-bold text-lg py-2"
-            >
-              <span className="relative z-10">Explore All Calculators</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform duration-300 relative z-10" strokeWidth={2.5} />
+            <RevealOnScroll animation="reveal-left">
+              <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-heading font-extrabold text-navy leading-[1.1] tracking-[-0.02em] mb-6">
+                Calculate your <br className="hidden lg:block"/>
+                <span className="text-amber">solar future.</span>
+              </h2>
               
-              {/* Clean, Architectural Underline */}
-              <span 
-                className="absolute left-0 -bottom-1 w-full h-[2px] bg-[var(--color-amber)] origin-left transition-transform duration-300 ease-out scale-x-0 group-hover:scale-x-100"
-              />
-            </Link>
+              <div className="pl-5 border-l-2 border-amber/50 mb-8 sm:mb-10">
+                <p className="font-body text-[15px] sm:text-lg text-navy/70 leading-relaxed max-w-md">
+                  Take the guesswork out of your solar journey. Use our professional-grade software tools to plan, size, and estimate your perfect setup in seconds—absolutely free.
+                </p>
+              </div>
+
+              <Link 
+                href="/calculators"
+                className="group relative inline-flex items-center gap-2 text-navy hover:text-amber transition-colors duration-300 w-max font-bold text-base sm:text-lg py-2"
+              >
+                <span className="relative z-10">Explore All Calculators</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform duration-300 relative z-10" strokeWidth={2.5} />
+                <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-amber origin-left transition-transform duration-300 ease-out scale-x-0 group-hover:scale-x-100" />
+              </Link>
+            </RevealOnScroll>
           </div>
 
-          {/* Right Column: Perfect Flush Grid */}
+          {/* Right Column: Grid */}
           <div className="w-full lg:w-7/12">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 lg:gap-5">
               {calculators.map((calc, idx) => (
-                <CalcCard key={idx} calc={calc} />
+                <RevealOnScroll 
+                  key={idx} 
+                  delay={`delay-${(idx % 2 === 0 ? 1 : 2) * 100}`} 
+                >
+                  <CalcCard calc={calc} />
+                </RevealOnScroll>
               ))}
             </div>
           </div>
@@ -95,52 +96,62 @@ export function CalculatorsGridSection() {
   );
 }
 
-// Reusable Clean Card Component with Brand Colors
+// Adaptive Card Component
 function CalcCard({ calc }) {
   return (
     <Link 
       href={calc.href}
-      className="group relative flex flex-col p-7 lg:p-8 rounded-lg bg-[var(--bg-card-on-white,white)] border border-[var(--border-divider)] hover:border-[var(--color-amber)]/40 hover:shadow-[0_16px_40px_-12px_rgba(13,27,42,0.12)] transition-all duration-500 overflow-hidden"
+      className="group relative flex flex-col p-4 sm:p-7 lg:p-8 rounded-2xl bg-white border border-navy/10 hover:border-amber/40 hover:shadow-[0_16px_40px_-12px_rgba(13,27,42,0.12)] transition-all duration-500 overflow-hidden"
     >
-      {/* Brand Ambient Glow on Hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-amber)]/0 via-transparent to-[var(--color-amber)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-gradient-to-br from-amber/0 via-transparent to-amber/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0" />
 
-      <div className="relative z-10 flex flex-col h-full">
-        {/* Header: Icon & Optional Tag */}
-        <div className="flex items-start justify-between mb-8">
-          {/* Subtle icon container that highlights in Navy on hover */}
-          <div className="w-12 h-12 rounded-[0.85rem] bg-black/[0.03] border border-[var(--border-divider)] flex items-center justify-center group-hover:-translate-y-1 group-hover:bg-[var(--color-navy)] group-hover:border-[var(--color-navy)] transition-all duration-500 shadow-sm">
-            <calc.icon 
-              className="w-6 h-6 text-[var(--color-navy)] group-hover:text-white transition-colors duration-500" 
-              strokeWidth={1.5} 
-            />
+      <div className="relative z-10 flex flex-row sm:flex-col h-full gap-4 sm:gap-0 items-center sm:items-start">
+        
+        {/* HEADER */}
+        <div className="flex sm:w-full items-start justify-between sm:mb-8 shrink-0">
+          <div className="w-12 h-12 rounded-xl sm:rounded-[0.85rem] bg-navy/5 border border-navy/5 flex items-center justify-center sm:group-hover:-translate-y-1 group-hover:bg-navy group-hover:border-navy transition-all duration-500 shadow-sm">
+            <calc.icon className="w-5 h-5 sm:w-6 sm:h-6 text-navy group-hover:text-white transition-colors duration-500" strokeWidth={1.5} />
           </div>
           
           {calc.tag && (
-            <span className="px-3 py-1.5 rounded-full bg-[var(--color-navy)] text-white text-[9px] font-bold tracking-widest uppercase shadow-md shadow-[var(--color-navy)]/10">
+            <span className="hidden sm:block px-3 py-1.5 rounded-full bg-navy text-white text-[9px] font-bold tracking-widest uppercase shadow-md shadow-navy/10">
               {calc.tag}
             </span>
           )}
         </div>
 
-        {/* Body */}
-        <h4 className="h4 text-[var(--color-navy)] mb-3 group-hover:text-[var(--color-amber)] transition-colors duration-300">
-          {calc.title}
-        </h4>
-        <p className="font-body text-[var(--text-body-on-white)] opacity-75 leading-relaxed mb-8 flex-grow">
-          {calc.description}
-        </p>
+        {/* BODY */}
+        <div className="flex-1 min-w-0 sm:flex-grow">
+          <div className="flex items-center gap-2 sm:block mb-1 sm:mb-3">
+            <h4 className="text-[15px] sm:text-[1.1rem] font-bold text-navy truncate sm:whitespace-normal group-hover:text-amber transition-colors duration-300">
+              {calc.title}
+            </h4>
+            {calc.tag && (
+              <span className="sm:hidden px-2 py-0.5 rounded-full bg-navy text-white text-[8px] font-bold uppercase tracking-wider shrink-0">
+                {calc.tag}
+              </span>
+            )}
+          </div>
+          <p className="text-[13px] sm:text-sm font-body text-navy/70 leading-relaxed line-clamp-1 sm:line-clamp-none sm:mb-8">
+            {calc.description}
+          </p>
+        </div>
         
-        {/* Footer: Structural Interaction */}
-        <div className="flex items-center justify-between pt-5 border-t border-[var(--border-divider)] group-hover:border-[var(--color-amber)]/30 transition-colors duration-300 mt-auto">
-          <span className="text-[var(--font-size-label)] font-bold text-[var(--color-navy)] uppercase tracking-widest transition-colors duration-300">
+        {/* MOBILE FOOTER */}
+        <div className="block sm:hidden shrink-0 pl-2">
+          <ArrowRight className="w-5 h-5 text-navy/30 group-hover:text-amber group-hover:translate-x-1 transition-all duration-300" />
+        </div>
+
+        {/* DESKTOP FOOTER */}
+        <div className="hidden sm:flex items-center justify-between w-full pt-5 border-t border-navy/10 group-hover:border-amber/30 transition-colors duration-300 mt-auto">
+          <span className="text-[11px] font-bold text-navy uppercase tracking-widest">
             Calculate Now
           </span>
-          {/* Arrow subtle color shift and movement */}
-          <div className="w-8 h-8 rounded-full bg-transparent flex items-center justify-center group-hover:bg-[var(--color-amber)]/10 transition-colors duration-300">
-            <ArrowRight className="w-4 h-4 text-[var(--color-navy)] group-hover:text-[var(--color-amber)] group-hover:translate-x-0.5 transition-all duration-300" strokeWidth={2.5} />
+          <div className="w-8 h-8 rounded-full bg-transparent flex items-center justify-center group-hover:bg-amber/10 transition-colors duration-300">
+            <ArrowRight className="w-4 h-4 text-navy group-hover:text-amber group-hover:translate-x-0.5 transition-all duration-300" strokeWidth={2.5} />
           </div>
         </div>
+
       </div>
     </Link>
   );

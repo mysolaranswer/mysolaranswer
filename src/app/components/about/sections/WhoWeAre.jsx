@@ -2,17 +2,17 @@ import React from 'react';
 import Image from 'next/image';
 
 const stats = [
-  { value: "4+", label: "Calculators" },
+  { value: "25+", label: "Calculators" },
   { value: "50+", label: "Topics Covered" },
   { value: "100%", label: "Free & Unbiased" }
 ];
 
 export default function WhoWeAre() {
   return (
-    <section className="w-full py-20 lg:py-32 bg-[var(--bg-main)]">
+    <section className="w-full bg-[var(--bg-page)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12 lg:gap-16">
+        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-16">
           
           {/* Left Column - Image */}
           <div className="w-full lg:w-1/2 relative">
@@ -32,7 +32,7 @@ export default function WhoWeAre() {
               Developers Passionate About Clear Information
             </h2>
             
-            <p className="text-base md:text-lg text-[var(--text-body-on-white)] opacity-80 mb-10 leading-relaxed">
+            <p className="text-base md:text-lg text-[var(--text-body-on-white)] opacity-80 mb-8 leading-relaxed">
               We&apos;re a small team of developers who noticed a huge gap in the solar industry: it&apos;s incredibly hard to get simple, accurate answers without talking to a salesperson. <br /><br />
               We decided to build the tools we wished we had when we were researching solar. No 50-person corporate team, no hidden agendas. Just clean, accurate calculators designed to give homeowners the power of transparent information.
             </p>

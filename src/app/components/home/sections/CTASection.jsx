@@ -5,7 +5,7 @@ import { RevealOnScroll } from "@/app/components/ui/RevealOnScroll";
 
 export function CTASection() {
   return (
-    <section className="w-full bg-[var(--bg-page)] py-16  border-t border-[var(--border-divider)]">
+    <section className="w-full bg-[var(--bg-page)]">
       <RevealOnScroll className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white border border-slate-200 shadow-sm mb-8">
           <span className="relative flex h-2.5 w-2.5">

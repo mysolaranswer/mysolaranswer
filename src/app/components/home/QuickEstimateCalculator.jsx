@@ -43,7 +43,7 @@ export function QuickEstimateCalculator() {
   };
 
   return (
-    <div className="w-full bg-[var(--color-navy)] rounded-md shadow-[0_20px_50px_-12px_rgba(13,27,42,0.3)] border border-[var(--border-divider-on-navy)] p-6 md:p-8 flex flex-col gap-6 relative z-10 [animation:heroSlideIn_0.9s_cubic-bezier(0.16,1,0.3,1)_0.2s_both]">
+    <div className="w-full lg:w-[80%] lg:mx-auto bg-[var(--color-navy)] rounded-md shadow-[0_20px_50px_-12px_rgba(13,27,42,0.3)] border border-[var(--border-divider-on-navy)] p-6 md:p-8 flex flex-col gap-6 relative z-10 [animation:heroSlideIn_0.9s_cubic-bezier(0.16,1,0.3,1)_0.2s_both]">
       
       {/* Input Section */}
       <div className="flex flex-col gap-2">

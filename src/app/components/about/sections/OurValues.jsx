@@ -23,15 +23,20 @@ const values = [
 
 export default function OurValues() {
   return (
-    <section className="w-full py-16 lg:py-24 bg-[var(--bg-page)] overflow-hidden font-sans">
+    <section className="w-full bg-[var(--bg-page)] overflow-hidden font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Section */}
-        <RevealOnScroll className="text-center max-w-3xl mx-auto mb-12 lg:mb-16 flex flex-col items-center">
-          <h2 className="font-heading text-[var(--color-navy)] tracking-tight mb-6 text-3xl md:text-4xl lg:text-5xl font-bold">
-            <SketchHighlight>Why Are Our Tools Completely Free?</SketchHighlight>
+        {/* Widened to max-w-4xl so the desktop text has plenty of room to stretch */}
+        <RevealOnScroll className="text-center max-w-4xl mx-auto mb-12 lg:mb-16 flex flex-col items-center">
+          
+          {/* Added sm:whitespace-nowrap to strictly enforce 1 line on desktop */}
+          <h2 className="font-heading text-[var(--color-navy)] tracking-tight mb-4 sm:mb-6 text-[32px] sm:text-4xl lg:text-5xl font-bold leading-[1.15] sm:leading-tight sm:whitespace-nowrap">
+            Why Are Our Tools <br className="block sm:hidden" />
+            <SketchHighlight>Completely Free?</SketchHighlight>
           </h2>
-          <p className="font-body text-[var(--text-body-on-white)] opacity-75 text-base md:text-lg">
+          
+          <p className="font-body text-[var(--text-body-on-white)] opacity-75 text-base md:text-lg max-w-2xl whitespace-normal">
             At MySolarAnswer, our values are the driving force behind everything. We want to empower homeowners, not exploit them.
           </p>
         </RevealOnScroll>
@@ -59,10 +64,10 @@ export default function OurValues() {
                 {/* Permanent divider line */}
                 <div className="w-10 h-[2px] bg-[var(--color-navy)]/10 mb-4 group-hover:bg-[var(--color-amber)] transition-colors duration-300" />
 
-                <h4 className="text-[1.1rem] font-bold mb-2 text-[var(--color-navy)]">
+                <h4 className="text-[1.1rem] font-bold mb-2 text-[var(--color-navy)] relative z-10">
                   {value.title}
                 </h4>
-                <p className="font-body text-[var(--text-body-on-white)] opacity-75 leading-relaxed text-sm">
+                <p className="font-body text-[var(--text-body-on-white)] opacity-75 leading-relaxed text-sm relative z-10">
                   {value.description}
                 </p>
               </RevealOnScroll>

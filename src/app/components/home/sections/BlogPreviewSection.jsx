@@ -30,7 +30,7 @@ export function BlogPreviewSection() {
   ];
 
   return (
-    <section className="w-full bg-[var(--bg-page)] py-16 lg:py-24 border-t border-[var(--border-divider)]">
+    <section className="w-full bg-[var(--bg-page)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <RevealOnScroll className="text-center mb-16">

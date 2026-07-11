@@ -32,7 +32,7 @@ export function WhyUseMySolarAnswer() {
   ];
 
   return (
-    <section className="w-full py-16 lg:py-24 bg-[var(--bg-page)] overflow-hidden font-sans">
+    <section className="w-full bg-[var(--bg-page)] overflow-hidden font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
         <RevealOnScroll className="text-center max-w-3xl mx-auto mb-12 lg:mb-16 flex flex-col items-center">
