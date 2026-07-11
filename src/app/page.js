@@ -1,7 +1,8 @@
 import { HeroSection } from "./components/home/sections/HeroSection";
 import { CalculatorsGridSection } from "./components/home/sections/CalculatorsGridSection";
 import { HowItWorksSection } from "./components/home/sections/HowItWorksSection";
-import { FAQSection } from "./components/home/sections/FAQSection";
+import { FAQSection } from "./components/ui/FAQSection";
+import { homeFaqs } from "./components/home/homeFaqs";
 import { BlogPreviewSection } from "./components/home/sections/BlogPreviewSection";
 import { CTASection } from "./components/home/sections/CTASection";
 import { WhyUseMySolarAnswer } from "./components/home/sections/WhyUseMySolarAnswer";
@@ -36,7 +37,7 @@ export default function Home() {
       </div>
 
       <div className={`${SP} border-t border-[var(--border-divider)] bg-[var(--bg-page)]`} id="faq">
-        <FAQSection />
+        <FAQSection faqs={homeFaqs} />
       </div>
 
       <div className={`${SP} border-t border-[var(--border-divider)]`}>
