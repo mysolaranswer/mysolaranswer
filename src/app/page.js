@@ -3,7 +3,7 @@ import { CalculatorsGridSection } from "./components/home/sections/CalculatorsGr
 import { HowItWorksSection } from "./components/home/sections/HowItWorksSection";
 import { FAQSection } from "./components/ui/FAQSection";
 import { homeFaqs } from "./components/home/homeFaqs";
-import { BlogPreviewSection } from "./components/home/sections/BlogPreviewSection";
+import { BlogSection } from "./components/ui/BlogSection";
 import { CTASection } from "./components/home/sections/CTASection";
 import { WhyUseMySolarAnswer } from "./components/home/sections/WhyUseMySolarAnswer";
 
@@ -41,7 +41,7 @@ export default function Home() {
       </div>
 
       <div className={`${SP} border-t border-[var(--border-divider)]`}>
-        <BlogPreviewSection />
+        <BlogSection limit={3} showHeading={true} />
       </div>
 
       <div className={`${SP} border-t border-[var(--border-divider)]`}>

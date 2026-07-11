@@ -1,12 +1,24 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-export function SecondaryButton({ children, href, showArrow = false, className = "", onClick }) {
+export function SecondaryButton({ children, href, showArrow = false, className = "", onClick, type }) {
+  const isButton = type || !href;
+  const baseClasses = `group inline-flex items-center justify-center gap-2 px-6 py-3 bg-[var(--color-navy)] hover:bg-[var(--color-amber)] text-white hover:text-[var(--color-navy)] rounded-md font-bold leading-none transition-colors duration-300 cursor-pointer ${className}`;
+
+  if (isButton) {
+    return (
+      <button type={type || "button"} onClick={onClick} className={baseClasses}>
+        {children}
+        {showArrow && <ArrowRight className="w-5 h-5 shrink-0 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2.5} />}
+      </button>
+    );
+  }
+
   return (
     <Link 
-      href={href || "#"} 
+      href={href} 
       onClick={onClick}
-      className={`group inline-flex items-center justify-center gap-2 px-6 py-3 bg-[var(--color-navy)] hover:bg-[var(--color-amber)] text-white hover:text-[var(--color-navy)] rounded-md font-bold leading-none transition-colors duration-300 ${className}`}
+      className={baseClasses}
     >
       {children}
       {showArrow && <ArrowRight className="w-5 h-5 shrink-0 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2.5} />}

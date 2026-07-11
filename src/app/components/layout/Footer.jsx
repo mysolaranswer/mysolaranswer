@@ -31,7 +31,7 @@ export function Footer() {
               <li><Link href="/" className="text-base text-[var(--text-body-on-navy)] hover:text-[var(--color-amber)] transition-colors">Home</Link></li>
               <li><Link href="/calculators" className="text-base text-[var(--text-body-on-navy)] hover:text-[var(--color-amber)] transition-colors">Calculators</Link></li>
               <li><Link href="/about" className="text-base text-[var(--text-body-on-navy)] hover:text-[var(--color-amber)] transition-colors">About</Link></li>
-              <li><Link href="/blog" className="text-base text-[var(--text-body-on-navy)] hover:text-[var(--color-amber)] transition-colors">Blog</Link></li>
+              <li><Link href="/blogs" className="text-base text-[var(--text-body-on-navy)] hover:text-[var(--color-amber)] transition-colors">Blogs</Link></li>
             </ul>
           </div>
 
