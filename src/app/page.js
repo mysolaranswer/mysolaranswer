@@ -1,9 +1,9 @@
 import { HeroSection } from "./components/home/sections/HeroSection";
 import { CalculatorsGridSection } from "./components/home/sections/CalculatorsGridSection";
 import { HowItWorksSection } from "./components/home/sections/HowItWorksSection";
-import { FAQSection } from "./components/ui/FAQSection";
+import { FAQSection } from "./components/ui/sections/FAQSection";
 import { homeFaqs } from "./components/home/homeFaqs";
-import { BlogSection } from "./components/ui/BlogSection";
+import { BlogSection } from "./components/ui/sections/BlogSection";
 import { blogs } from "./data/blogs";
 import { CTASection } from "./components/home/sections/CTASection";
 import { WhyUseMySolarAnswer } from "./components/home/sections/WhyUseMySolarAnswer";

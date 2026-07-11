@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Battery, TrendingUp, Home, Sun, ArrowRight, PiggyBank, CreditCard } from "lucide-react";
-import { SketchHighlight } from "@/app/components/ui/SketchHighlight";
+import { SketchHighlight } from "@/app/components/ui/elements/SketchHighlight";
 
 export function CalculatorsGridSection() {
   const calculators = [
@@ -54,7 +54,7 @@ export function CalculatorsGridSection() {
           {/* Left Column: Context */}
           <div className="w-full lg:w-5/12 lg:sticky lg:top-32 flex flex-col justify-center items-start">
             <div>
-              <h2 className="h2 mb-2">
+              <h2 className="h2">
                 <SketchHighlight>Calculate your</SketchHighlight>
               </h2>
               <h2 className="h2 mb-4">
@@ -98,55 +98,56 @@ function CalcCard({ calc }) {
   return (
     <Link 
       href={calc.href}
-      className="group relative flex flex-col p-4 sm:p-7 lg:p-8 rounded-md bg-[var(--bg-card-on-white)] border border-[var(--color-navy)]/10 hover:border-[var(--color-amber)]/40 hover:shadow-[0_16px_40px_-12px_rgba(13,27,42,0.12)] transition-all duration-500 overflow-hidden"
+      className="group flex flex-col p-5 sm:p-6 lg:p-8 rounded-xl bg-white border border-[var(--color-navy)]/10 hover:border-[var(--color-navy)]/20 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-300"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-amber)]/0 via-transparent to-[var(--color-amber)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0" />
-
-      <div className="relative z-10 flex flex-row sm:flex-col h-full gap-4 sm:gap-0 items-center sm:items-start">
+      <div className="flex flex-col h-full w-full">
         
-        {/* HEADER */}
-        <div className="flex sm:w-full items-start justify-between sm:mb-8 shrink-0">
-          <div className="w-12 h-12 rounded-xl sm:rounded-[0.85rem] bg-[var(--color-navy)]/5 border border-[var(--color-navy)]/5 flex items-center justify-center sm:group-hover:-translate-y-1 group-hover:bg-[var(--color-navy)] group-hover:border-[var(--color-navy)] transition-all duration-500 shadow-sm">
-            <calc.icon className="w-5 h-5 sm:w-6 sm:h-6 text-[var(--color-navy)] group-hover:text-[var(--color-white)] transition-colors duration-500" strokeWidth={1.5} />
+        {/* DESKTOP HEADER */}
+        <div className="hidden sm:flex w-full items-start justify-between mb-6 shrink-0">
+          <div className="w-12 h-12 rounded-lg bg-[var(--color-navy)]/5 flex items-center justify-center transition-colors duration-300 group-hover:bg-[var(--color-navy)]/10">
+            <calc.icon className="w-6 h-6 text-[var(--color-navy)]" strokeWidth={1.5} />
           </div>
           
           {calc.tag && (
-            <span className="hidden sm:block px-3 py-1.5 rounded-full bg-[var(--color-navy)] text-[var(--color-white)] text-[9px] font-bold tracking-widest uppercase shadow-md shadow-[var(--color-navy)]/10">
+            <span className="px-2.5 py-1 rounded-md bg-[var(--color-navy)]/5 text-[var(--color-navy)]/80 text-xs font-semibold uppercase tracking-wider">
               {calc.tag}
             </span>
           )}
         </div>
 
-        {/* BODY */}
-        <div className="flex-1 min-w-0 sm:flex-grow">
-          <div className="flex items-center gap-2 sm:block mb-1 sm:mb-3">
-            <h4 className="h4 text-[var(--color-navy)] truncate sm:whitespace-normal group-hover:text-[var(--color-amber)] transition-colors duration-300">
-              {calc.title}
-            </h4>
-            {calc.tag && (
-              <span className="sm:hidden px-2 py-0.5 rounded-full bg-[var(--color-navy)] text-[var(--color-white)] text-[8px] font-bold uppercase tracking-wider shrink-0">
-                {calc.tag}
-              </span>
-            )}
+        {/* MOBILE HORIZONTAL BODY & DESKTOP VERTICAL BODY */}
+        <div className="flex flex-row sm:flex-col gap-4 sm:gap-0 flex-grow w-full items-center sm:items-start mb-0 sm:mb-6">
+          
+          {/* MOBILE ICON */}
+          <div className="sm:hidden w-12 h-12 shrink-0 rounded-lg bg-[var(--color-navy)]/5 flex items-center justify-center">
+            <calc.icon className="w-6 h-6 text-[var(--color-navy)]" strokeWidth={1.5} />
           </div>
-          <p className="body-regular text-[var(--color-navy)]/70 line-clamp-1 sm:line-clamp-none sm:mb-8">
-            {calc.description}
-          </p>
+
+          <div className="flex-1 min-w-0 w-full">
+            <div className="flex items-center justify-between sm:block mb-1 sm:mb-2 gap-2">
+              <h4 className="h4 text-[var(--color-navy)] truncate sm:whitespace-normal">
+                {calc.title}
+              </h4>
+              {calc.tag && (
+                <span className="sm:hidden px-2 py-0.5 rounded-md bg-[var(--color-navy)]/5 text-[var(--color-navy)]/80 text-[10px] font-semibold uppercase tracking-wider shrink-0">
+                  {calc.tag}
+                </span>
+              )}
+            </div>
+            
+            <p className="body-regular text-[var(--color-navy)]/70 line-clamp-1 sm:line-clamp-none">
+              {calc.description}
+            </p>
+          </div>
+          
         </div>
         
-        {/* MOBILE FOOTER */}
-        <div className="block sm:hidden shrink-0 pl-2">
-          <ArrowRight className="w-5 h-5 text-[var(--color-navy)]/30 group-hover:text-[var(--color-amber)] group-hover:translate-x-1 transition-all duration-300" />
-        </div>
-
-        {/* DESKTOP FOOTER */}
-        <div className="hidden sm:flex items-center justify-between w-full pt-5 border-t border-[var(--color-navy)]/10 group-hover:border-[var(--color-amber)]/30 transition-colors duration-300 mt-auto">
-          <span className="text-[11px] font-bold text-[var(--color-navy)] uppercase tracking-widest">
+        {/* FOOTER - VISIBLE ON ALL SCREENS */}
+        <div className="flex items-center text-[var(--color-navy)]/60 group-hover:text-[var(--color-navy)] transition-colors duration-300 mt-4 sm:mt-auto pt-0 sm:pt-2">
+          <span className="text-[13px] sm:text-sm font-semibold tracking-wide">
             Calculate Now
           </span>
-          <div className="w-8 h-8 rounded-full bg-transparent flex items-center justify-center group-hover:bg-[var(--color-amber)]/10 transition-colors duration-300">
-            <ArrowRight className="w-4 h-4 text-[var(--color-navy)] group-hover:text-[var(--color-amber)] group-hover:translate-x-0.5 transition-all duration-300" strokeWidth={2.5} />
-          </div>
+          <ArrowRight className="w-4 h-4 ml-1.5 group-hover:translate-x-1 transition-transform duration-300" strokeWidth={2} />
         </div>
 
       </div>

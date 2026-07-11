@@ -1,5 +1,5 @@
 import { blogs } from "@/app/data/blogs";
-import { BlogSection } from "@/app/components/ui/BlogSection";
+import { BlogSection } from "@/app/components/ui/sections/BlogSection";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";

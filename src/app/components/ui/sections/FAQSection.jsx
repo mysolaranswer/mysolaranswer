@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
-import { SketchHighlight } from "@/app/components/ui/SketchHighlight";
+import { SketchHighlight } from "@/app/components/ui/elements/SketchHighlight";
 
 export function FAQSection({ faqs = [] }) {
 

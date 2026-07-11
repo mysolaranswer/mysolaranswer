@@ -1,4 +1,4 @@
-import { SketchHighlight } from "@/app/components/ui/SketchHighlight";
+import { SketchHighlight } from "@/app/components/ui/elements/SketchHighlight";
 import { SecondaryButton } from "@/app/components/ui/buttons/SecondaryButton";
 
 export function NewsletterSection() {

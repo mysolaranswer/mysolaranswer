@@ -1,6 +1,6 @@
 import React from 'react';
 import { HelpCircle, PhoneOff, Calculator } from 'lucide-react';
-import { SketchHighlight } from "@/app/components/ui/SketchHighlight";
+import { SketchHighlight } from "@/app/components/ui/elements/SketchHighlight";
 
 const problems = [
   {

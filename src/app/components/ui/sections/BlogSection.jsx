@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { SketchHighlight } from "@/app/components/ui/SketchHighlight";
+import { SketchHighlight } from "@/app/components/ui/elements/SketchHighlight";
 
 export function BlogSection({ articles = [], limit, showHeading = false, isRelated = false }) {
   const displayedArticles = limit ? articles.slice(0, limit) : articles;

@@ -1,4 +1,4 @@
-import AboutHero from "../components/about/sections/AboutHero";
+import { PageHero } from "../components/ui/hero/PageHero";
 import TheProblem from "../components/about/sections/TheProblem";
 import Methodology from "../components/about/sections/Methodology";
 import WhoWeAre from "../components/about/sections/WhoWeAre";
@@ -17,8 +17,22 @@ export default function AboutPage() {
   return (
     <div className="flex flex-col w-full bg-[var(--bg-page)] min-h-screen">
 
-      {/* Hero — manages its own viewport-height layout */}
-      <AboutHero />
+      <PageHero
+        title="Solar is a math equation."
+        titleHighlight="Not a sales pitch."
+        backgroundImageUrl="/solar-panels-image-for-solar-calculators-site.jpg"
+        imageAlt="Modern home with residential solar panels"
+      >
+        <p className="body-large text-[var(--color-white)]/90 mb-6">
+          Finding the price of a new roof takes seconds. But pricing solar panels usually means surrendering your phone number and dodging aggressive sales calls.
+        </p>
+        <div className="pt-1 border-l-2 border-[var(--color-amber)]/50 pl-4">
+          <p className="text-xl sm:text-2xl font-bold text-[var(--color-white)] leading-tight tracking-tight">
+            We got tired of it. <br className="block sm:hidden" />
+            So we built MySolarAnswer.
+          </p>
+        </div>
+      </PageHero>
 
       {/* All content sections share the same vertical rhythm */}
       <div className={`${SP} border-t border-[var(--border-divider)]`}>

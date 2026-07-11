@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SecondaryButton } from "@/app/components/ui/buttons/SecondaryButton";
-import { SketchHighlight } from "@/app/components/ui/SketchHighlight";
+import { SketchHighlight } from "@/app/components/ui/elements/SketchHighlight";
 
 export function CTASection() {
   return (

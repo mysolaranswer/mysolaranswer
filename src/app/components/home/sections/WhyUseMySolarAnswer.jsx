@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { CircleDollarSign, Zap, Leaf, Home } from "lucide-react";
-import { SketchHighlight } from "@/app/components/ui/SketchHighlight";
+import { SketchHighlight } from "@/app/components/ui/elements/SketchHighlight";
 
 export function WhyUseMySolarAnswer() {
   const benefits = [
