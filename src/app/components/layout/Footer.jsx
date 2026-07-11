@@ -9,13 +9,13 @@ export function Footer() {
     <footer className="w-full bg-[var(--bg-footer)] text-white pt-16 pb-8 border-t border-[var(--border-divider-on-navy)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 mb-16">
           
           {/* Brand Info */}
           <div className="lg:col-span-3 flex flex-col items-start">
             <div className="flex-shrink-0 flex items-center gap-2 mb-6">
               <Link href="/" className="flex items-center">
-                <Image src="/Logo.png" alt="MySolarAnswer Logo" width={500} height={500} className="h-20 md:h-28 w-auto object-contain" />
+                <Image src="/Logo.png" alt="MySolarAnswer Logo" width={500} height={500} className="h-20 lg:h-28 w-auto object-contain" />
               </Link>
             </div>
             <p className="text-base text-[var(--text-body-on-navy)] mb-6 max-w-xs leading-relaxed">
@@ -73,8 +73,8 @@ export function Footer() {
         </div>
 
         {/* Bottom Footer */}
-        <div className="pt-8 border-t border-[var(--border-divider-on-navy)] flex flex-col-reverse md:flex-row items-center justify-between gap-4">
-          <p className="text-base text-[var(--text-body-on-navy)] text-center md:text-left">
+        <div className="pt-8 border-t border-[var(--border-divider-on-navy)] flex flex-col-reverse lg:flex-row items-center justify-between gap-4">
+          <p className="text-base text-[var(--text-body-on-navy)] text-center lg:text-left">
             &copy; {currentYear} MySolarAnswer — All Rights Reserved.
           </p>
           

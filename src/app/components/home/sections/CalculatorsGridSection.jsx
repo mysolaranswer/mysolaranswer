@@ -55,12 +55,12 @@ export function CalculatorsGridSection() {
           {/* Left Column: Context */}
           <div className="w-full lg:w-5/12 lg:sticky lg:top-32 flex flex-col justify-center items-start">
             <RevealOnScroll animation="reveal-left">
-              <h2 className="h2 mb-6">
+              <h2 className="h2 mb-2">
                 <SketchHighlight>Calculate your</SketchHighlight>
               </h2>
-              <h3 className="font-sub-heading mb-4 text-[var(--color-navy)] font-medium">
+              <h2 className="h2 mb-4">
                 <span className="text-[var(--color-amber)]">solar future.</span>
-              </h3>
+              </h2>
               
               <div className="pl-5 border-l-2 border-[var(--color-amber)]/50 mb-8 sm:mb-10">
                 <p className="body-large text-[var(--color-navy)]/70 max-w-md">
@@ -126,7 +126,7 @@ function CalcCard({ calc }) {
         {/* BODY */}
         <div className="flex-1 min-w-0 sm:flex-grow">
           <div className="flex items-center gap-2 sm:block mb-1 sm:mb-3">
-            <h4 className="text-[15px] sm:text-[1.1rem] font-bold text-[var(--color-navy)] truncate sm:whitespace-normal group-hover:text-[var(--color-amber)] transition-colors duration-300">
+            <h4 className="h4 text-[var(--color-navy)] truncate sm:whitespace-normal group-hover:text-[var(--color-amber)] transition-colors duration-300">
               {calc.title}
             </h4>
             {calc.tag && (
