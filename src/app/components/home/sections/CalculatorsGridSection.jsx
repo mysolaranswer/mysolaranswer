@@ -12,10 +12,10 @@ export function CalculatorsGridSection() {
       tag: "Popular",
     },
     {
-      title: "ROI Calculator",
-      description: "Discover your breakeven point and calculate your long-term savings from going solar.",
+      title: "Wire Size Calculator",
+      description: "Calculate the exact AWG wire gauge needed to prevent voltage drop and ensure safety.",
       icon: TrendingUp,
-      href: "/calculators/solar-roi-calculator",
+      href: "/calculators/solar-wire-size-calculator",
     },
     {
       title: "Off-Grid Calculator",
@@ -24,16 +24,16 @@ export function CalculatorsGridSection() {
       href: "/calculators/off-grid-solar-calculator",
     },
     {
-      title: "Panel Calculator",
-      description: "Determine exactly how many solar panels you need to offset your electricity usage.",
+      title: "Load Calculator",
+      description: "Audit your daily energy consumption to figure out exactly how much power you need.",
       icon: Sun,
-      href: "/calculators/how-many-solar-panels",
+      href: "/calculators/solar-load-calculator",
     },
     {
-      title: "Savings Calculator",
-      description: "Calculate your exact monthly and lifetime utility bill reductions after making the switch.",
+      title: "Inverter Calculator",
+      description: "Find the right inverter size to handle your continuous and surge power loads.",
       icon: PiggyBank,
-      href: "/calculators/solar-savings-calculator",
+      href: "/calculators/solar-inverter-calculator",
     },
     {
       title: "Financing Calculator",
