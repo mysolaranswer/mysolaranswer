@@ -9,8 +9,8 @@ export const post = {
   seoTitle: "How Solar Energy Can Save You Thousands - MySolarAnswer",
   seoDescription: "By locking in your energy rates, solar panels can save you tens of thousands of dollars over their 25-year lifespan.",
   seoKeywords: ["solar savings", "reduce electricity bill", "solar financial benefits"],
-  heroImage: "https://images.unsplash.com/photo-1580519542036-ed47f3088bfe?q=80&w=2071&auto=format&fit=crop",
-  heroImageAlt: "A house with a large solar installation and a calculator in the foreground representing savings",
+  heroImage: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=2070&auto=format&fit=crop",
+  heroImageAlt: "A plant growing out of a stack of coins, representing the growth of financial savings through green solar energy",
   content: (
     <>
       <p>By locking in your energy rates, solar panels can save you tens of thousands of dollars over their 25-year lifespan.</p>
