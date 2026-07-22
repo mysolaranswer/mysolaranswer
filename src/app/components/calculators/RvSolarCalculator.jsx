@@ -12,9 +12,11 @@ import {
   Activity,
   Info,
   CheckCircle2,
+  BarChart2,
+  List,
 } from "lucide-react";
 
-// ─── Constants ──────────────────────────────────────────────────────────────
+// ─── Constants ───────────────────────────────────────────────────────────────
 
 const DEFAULT_APPLIANCES = [
   { id: "led-lights",   name: "LED Lights",            watts: 50,   hours: 5,    qty: 1, checked: true  },
@@ -41,7 +43,24 @@ function roundUpToNearestControllerSize(amps) {
   return CONTROLLER_SIZES.find((s) => s >= amps) ?? null;
 }
 
-// ─── Sub-components ─────────────────────────────────────────────────────────
+// ─── Shared calculation (Steps 2–4) ─────────────────────────────────────────
+
+function runSharedCalc({ totalWh, peakSunOption, batteryType, daysOfAutonomy, systemVoltage }) {
+  const peakSunHours = peakSunOption === "low" ? 3.5 : peakSunOption === "high" ? 5.5 : 4.5;
+  const panelWatts   = roundUpToNearest((totalWh / peakSunHours) / 0.85, 50);
+
+  const DoD        = batteryType === "lifepo4" ? 0.80 : 0.50;
+  const batteryKwh = ((totalWh / 1000) * daysOfAutonomy) / DoD;
+  const batteryAh  = roundUpToNearest((batteryKwh * 1000) / systemVoltage, 10);
+
+  const requiredControllerAmps    = (panelWatts / systemVoltage) * 1.25;
+  const recommendedControllerSize = roundUpToNearestControllerSize(requiredControllerAmps);
+  const controllerExceeded        = recommendedControllerSize === null;
+
+  return { panelWatts, batteryKwh, batteryAh, requiredControllerAmps, recommendedControllerSize, controllerExceeded };
+}
+
+// ─── Sub-components ──────────────────────────────────────────────────────────
 
 function ApplianceRow({ appliance, isCustom, onChange, onDelete }) {
   const showACWarning = appliance.id === "ac-unit" && appliance.checked;
@@ -49,7 +68,7 @@ function ApplianceRow({ appliance, isCustom, onChange, onDelete }) {
   return (
     <div className="group">
       <div
-        className={`flex items-center gap-3 p-3 rounded-xl transition-all duration-200 ${
+        className={`flex items-center gap-2 p-3 rounded-xl transition-all duration-200 ${
           appliance.checked
             ? "bg-amber/5 border border-amber/20"
             : "bg-navy/[0.02] border border-transparent hover:border-navy/10"
@@ -90,7 +109,7 @@ function ApplianceRow({ appliance, isCustom, onChange, onDelete }) {
         </div>
 
         {/* Qty */}
-        <div className="flex items-center gap-1 shrink-0">
+        <div className="flex items-center gap-0.5 shrink-0">
           <input
             type="number"
             min="1"
@@ -102,7 +121,7 @@ function ApplianceRow({ appliance, isCustom, onChange, onDelete }) {
             }`}
             aria-label="Quantity"
           />
-          <span className="text-[11px] font-bold text-navy/40 w-4">×</span>
+          <span className="text-[11px] font-bold text-navy/40">×</span>
         </div>
 
         {/* Watts */}
@@ -113,7 +132,7 @@ function ApplianceRow({ appliance, isCustom, onChange, onDelete }) {
             step="1"
             value={appliance.watts === "" ? "" : appliance.watts}
             onChange={(e) => onChange({ ...appliance, watts: e.target.value === "" ? "" : parseFloat(e.target.value) })}
-            className={`w-20 text-right bg-white border rounded-lg py-1.5 px-2 text-sm font-bold focus:ring-2 focus:ring-amber focus:border-amber outline-none transition-all ${
+            className={`w-16 text-right bg-white border rounded-lg py-1.5 px-2 text-sm font-bold focus:ring-2 focus:ring-amber focus:border-amber outline-none transition-all ${
               appliance.checked ? "border-navy/15 text-navy" : "border-navy/10 text-navy/40"
             }`}
             aria-label="Watts"
@@ -130,7 +149,7 @@ function ApplianceRow({ appliance, isCustom, onChange, onDelete }) {
             step="0.25"
             value={appliance.hours === "" ? "" : appliance.hours}
             onChange={(e) => onChange({ ...appliance, hours: e.target.value === "" ? "" : parseFloat(e.target.value) })}
-            className={`w-16 text-right bg-white border rounded-lg py-1.5 px-2 text-sm font-bold focus:ring-2 focus:ring-amber focus:border-amber outline-none transition-all ${
+            className={`w-14 text-right bg-white border rounded-lg py-1.5 px-2 text-sm font-bold focus:ring-2 focus:ring-amber focus:border-amber outline-none transition-all ${
               appliance.checked ? "border-navy/15 text-navy" : "border-navy/10 text-navy/40"
             }`}
             aria-label="Hours per day"
@@ -178,7 +197,7 @@ function OptionButton({ active, onClick, children }) {
   );
 }
 
-function ResultCard({ icon, label, value, sub }) {
+function ResultCard({ icon, label, value, sub, children }) {
   return (
     <div className="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-1.5">
       <div className="flex items-center gap-2 mb-2">
@@ -189,30 +208,57 @@ function ResultCard({ icon, label, value, sub }) {
       </div>
       <p className="text-white font-bold text-2xl leading-tight">{value}</p>
       {sub && <p className="text-white/50 text-xs leading-relaxed">{sub}</p>}
+      {children}
     </div>
   );
 }
 
-// ─── Main Component ──────────────────────────────────────────────────────────
+// ─── Main Component ───────────────────────────────────────────────────────────
 
 export function RvSolarCalculator() {
-  const [appliances, setAppliances] = useState(DEFAULT_APPLIANCES);
+
+  // ── Mode ──
+  const [mode, setMode] = useState("appliances"); // "appliances" | "kwh"
+
+  // ── Mode 1: Appliances ──
+  const [appliances, setAppliances]           = useState(DEFAULT_APPLIANCES);
   const [customAppliances, setCustomAppliances] = useState([]);
 
+  // ── Mode 2: kWh ──
+  const [dailyKwh, setDailyKwh]         = useState("");
+  const [usagePattern, setUsagePattern] = useState("regular"); // "light" | "regular" | "heavy"
+
+  // ── Shared config ──
   const [systemVoltage, setSystemVoltage] = useState(12);
   const [peakSunOption, setPeakSunOption] = useState("average");
-  const [batteryType, setBatteryType] = useState("lifepo4");
+  const [batteryType, setBatteryType]     = useState("lifepo4");
   const [daysOfAutonomy, setDaysOfAutonomy] = useState(2);
 
+  // ── Output ──
   const [result, setResult] = useState(null);
-  const [error, setError] = useState("");
+  const [error, setError]   = useState("");
 
-  const allAppliances = [...appliances, ...customAppliances];
+  // ── Derived live total (mode 1 only) ──
+  const allAppliances     = [...appliances, ...customAppliances];
   const checkedAppliances = allAppliances.filter((a) => a.checked);
   const liveTotalWh = checkedAppliances.reduce((sum, a) => {
-    return sum + (parseFloat(a.watts) || 0) * (parseInt(a.qty, 10) || 1) * (parseFloat(a.hours) || 0);
+    return sum + (parseFloat(a.watts) || 0) * (parseFloat(a.hours) || 0) * (parseInt(a.qty) || 1);
   }, 0);
 
+  // ── Mode switch ──
+  const switchMode = (newMode) => {
+    if (newMode === mode) return;
+    setMode(newMode);
+    // clear mode-specific state
+    setAppliances(DEFAULT_APPLIANCES);
+    setCustomAppliances([]);
+    setDailyKwh("");
+    setUsagePattern("regular");
+    setResult(null);
+    setError("");
+  };
+
+  // ── Appliance handlers ──
   const updateAppliance = useCallback((id, updated, isCustom) => {
     if (isCustom) {
       setCustomAppliances((prev) => prev.map((a) => (a.id === id ? updated : a)));
@@ -236,71 +282,71 @@ export function RvSolarCalculator() {
     setResult(null);
   };
 
+  // ── Calculate ──
   const handleCalculate = () => {
     setError("");
     setResult(null);
 
-    const checked = allAppliances.filter((a) => a.checked);
+    let totalWh = 0;
+    let highUsageWarning = false;
 
-    if (checked.length === 0) {
-      setError("Please select at least one appliance.");
-      return;
-    }
+    if (mode === "appliances") {
+      const checked = allAppliances.filter((a) => a.checked);
 
-    // Validate checked appliances (skip completely blank custom rows)
-    for (const a of checked) {
-      const w = parseFloat(a.watts);
-      const h = parseFloat(a.hours);
-      const isBlankCustom = a.isCustom && a.name.trim() === "" && (isNaN(w) || w <= 0) && (isNaN(h) || h <= 0);
-      if (isBlankCustom) continue;
-      if (isNaN(w) || w <= 0 || isNaN(h) || h <= 0) {
-        setError("Please enter valid wattage and hours for all selected appliances.");
+      if (checked.length === 0) {
+        setError("Please select at least one appliance.");
         return;
       }
+
+      for (const a of checked) {
+        const w = parseFloat(a.watts);
+        const h = parseFloat(a.hours);
+        const isBlankCustom = a.isCustom && a.name.trim() === "" && (isNaN(w) || w <= 0) && (isNaN(h) || h <= 0);
+        if (isBlankCustom) continue;
+        if (isNaN(w) || w <= 0 || isNaN(h) || h <= 0) {
+          setError("Please enter valid wattage and hours for all selected appliances.");
+          return;
+        }
+      }
+
+      const validChecked = checked.filter((a) => {
+        const w = parseFloat(a.watts);
+        const h = parseFloat(a.hours);
+        return !isNaN(w) && w > 0 && !isNaN(h) && h > 0;
+      });
+
+      if (validChecked.length === 0) {
+        setError("Please select at least one appliance with valid values.");
+        return;
+      }
+
+      // Step 1 — Mode 1: totalWh = sum of (qty × watts × hours)
+      totalWh = validChecked.reduce(
+        (sum, a) => sum + (parseInt(a.qty) || 1) * parseFloat(a.watts) * parseFloat(a.hours),
+        0
+      );
+
+    } else {
+      // mode === "kwh"
+      const kwh = parseFloat(dailyKwh);
+      if (!dailyKwh || isNaN(kwh) || kwh <= 0) {
+        setError("Please enter your daily kWh usage.");
+        return;
+      }
+      const usageFactor = usagePattern === "light" ? 0.70 : usagePattern === "heavy" ? 1.20 : 1.00;
+      totalWh = kwh * usageFactor * 1000;
+      if (kwh > 50) highUsageWarning = true;
     }
 
-    // Filter valid appliances
-    const validChecked = checked.filter((a) => {
-      const w = parseFloat(a.watts);
-      const h = parseFloat(a.hours);
-      return !isNaN(w) && w > 0 && !isNaN(h) && h > 0;
-    });
+    const shared = runSharedCalc({ totalWh, peakSunOption, batteryType, daysOfAutonomy, systemVoltage });
 
-    if (validChecked.length === 0) {
-      setError("Please select at least one appliance with valid values.");
-      return;
-    }
-
-    // Step 1: Total daily Wh (watts × qty × hours)
-    const totalWh = validChecked.reduce((sum, a) => sum + parseFloat(a.watts) * (parseInt(a.qty, 10) || 1) * parseFloat(a.hours), 0);
-
-    // Step 2: Solar panel wattage
-    const peakSunHours = peakSunOption === "low" ? 3.5 : peakSunOption === "high" ? 5.5 : 4.5;
-    const panelWatts = roundUpToNearest((totalWh / peakSunHours) / 0.85, 50);
-
-    // Step 3: Battery bank
-    const DoD = batteryType === "lifepo4" ? 0.80 : 0.50;
-    const batteryKwh = (totalWh * daysOfAutonomy) / 1000 / DoD;
-    const batteryAh = roundUpToNearest((batteryKwh * 1000) / systemVoltage, 10);
-
-    // Step 4: Charge controller
-    const requiredControllerAmps = (panelWatts / systemVoltage) * 1.25;
-    const recommendedControllerSize = roundUpToNearestControllerSize(requiredControllerAmps);
-    const controllerExceeded = recommendedControllerSize === null;
-
-    setResult({
-      totalWh,
-      panelWatts,
-      batteryKwh,
-      batteryAh,
-      requiredControllerAmps,
-      recommendedControllerSize,
-      controllerExceeded,
-      numberOfCheckedAppliances: validChecked.length,
-    });
+    setResult({ totalWh, highUsageWarning, ...shared });
   };
 
-  const batteryTypeLabel = batteryType === "lifepo4" ? "LiFePO4 / Lithium" : "Lead Acid / AGM";
+  const batteryTypeLabel    = batteryType === "lifepo4" ? "LiFePO4 / Lithium" : "Lead Acid / AGM";
+  const peakSunHoursDisplay = peakSunOption === "low" ? "3.5" : peakSunOption === "high" ? "5.5" : "4.5";
+
+  // ─────────────────────────────────────────────────────────────────────────────
 
   return (
     <div className="flex flex-col lg:flex-row bg-white rounded-2xl sm:rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(13,27,42,0.1)] border border-navy/5 overflow-hidden">
@@ -308,69 +354,180 @@ export function RvSolarCalculator() {
       {/* ── LEFT: INPUTS ─────────────────────────────────────────────────── */}
       <div className="flex-1 p-6 sm:p-8 lg:p-10 space-y-8">
 
-        {/* Section header */}
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-amber/10 rounded-xl flex items-center justify-center shrink-0">
-            <Zap className="w-5 h-5 text-amber" />
+        {/* ── Mode Toggle ── */}
+        <div>
+          <p className="text-[11px] font-bold uppercase tracking-wider text-navy/40 mb-3">Input Mode</p>
+          <div className="flex gap-2 p-1 bg-navy/[0.04] rounded-2xl">
+            <button
+              onClick={() => switchMode("appliances")}
+              className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl font-bold text-sm transition-all duration-200 ${
+                mode === "appliances"
+                  ? "bg-white text-navy shadow-sm border border-navy/8"
+                  : "text-navy/50 hover:text-navy"
+              }`}
+            >
+              <List className="w-4 h-4" />
+              By Appliances
+            </button>
+            <button
+              onClick={() => switchMode("kwh")}
+              className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl font-bold text-sm transition-all duration-200 ${
+                mode === "kwh"
+                  ? "bg-white text-navy shadow-sm border border-navy/8"
+                  : "text-navy/50 hover:text-navy"
+              }`}
+            >
+              <BarChart2 className="w-4 h-4" />
+              By kWh Usage
+            </button>
           </div>
-          <div>
-            <h3 className="font-heading text-xl text-navy leading-tight">Daily Appliance Load</h3>
-            <p className="text-xs text-navy/50 mt-0.5">Check the appliances you plan to run</p>
+        </div>
+
+        {/* ══════════════════════════════════════════════════════════════════
+            MODE 1 — By Appliances
+        ══════════════════════════════════════════════════════════════════ */}
+        {mode === "appliances" && (
+          <div className="space-y-6">
+            {/* Section header */}
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-amber/10 rounded-xl flex items-center justify-center shrink-0">
+                <Zap className="w-5 h-5 text-amber" />
+              </div>
+              <div>
+                <h3 className="font-heading text-xl text-navy leading-tight">Daily Appliance Load</h3>
+                <p className="text-xs text-navy/50 mt-0.5">Check the appliances you plan to run</p>
+              </div>
+            </div>
+
+            {/* Column headers */}
+            <div className="flex items-center gap-2 px-1">
+              <div className="w-6 shrink-0" />
+              <div className="flex-1 text-[10px] font-bold uppercase tracking-wider text-navy/40">Appliance</div>
+              <div className="w-12 text-[10px] font-bold uppercase tracking-wider text-navy/40 text-center">Qty</div>
+              <div className="w-3 shrink-0" />
+              <div className="w-16 text-[10px] font-bold uppercase tracking-wider text-navy/40 text-right">Watts</div>
+              <div className="w-4 shrink-0" />
+              <div className="w-14 text-[10px] font-bold uppercase tracking-wider text-navy/40 text-right">Hrs/Day</div>
+              <div className="w-4 shrink-0" />
+            </div>
+
+            {/* Appliance rows */}
+            <div className="space-y-2">
+              {appliances.map((a) => (
+                <ApplianceRow
+                  key={a.id}
+                  appliance={a}
+                  isCustom={false}
+                  onChange={(updated) => updateAppliance(a.id, updated, false)}
+                />
+              ))}
+              {customAppliances.map((a) => (
+                <ApplianceRow
+                  key={a.id}
+                  appliance={a}
+                  isCustom={true}
+                  onChange={(updated) => updateAppliance(a.id, updated, true)}
+                  onDelete={() => deleteCustomAppliance(a.id)}
+                />
+              ))}
+            </div>
+
+            {/* Add custom */}
+            <button
+              onClick={addCustomAppliance}
+              className="flex items-center gap-2 text-sm font-bold text-amber hover:text-navy border border-dashed border-amber/40 hover:border-amber/80 rounded-xl px-4 py-3 w-full justify-center transition-all duration-200 hover:bg-amber/5"
+            >
+              <Plus className="w-4 h-4" />
+              Add Custom Appliance
+            </button>
+
+            {/* Live total */}
+            <div className="bg-navy/[0.03] border border-navy/8 rounded-xl px-4 py-3 flex items-center justify-between">
+              <span className="text-sm text-navy/60 font-medium">Estimated daily usage:</span>
+              <span className="text-lg font-bold text-navy">
+                {liveTotalWh.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                <span className="text-sm font-medium text-navy/50 ml-1">Wh/day</span>
+              </span>
+            </div>
           </div>
-        </div>
+        )}
 
-        {/* Column headers */}
-        <div className="flex items-center gap-3 px-1">
-          <div className="w-6 shrink-0" />
-          <div className="flex-1 text-[10px] font-bold uppercase tracking-wider text-navy/40">Appliance</div>
-          <div className="w-12 text-[10px] font-bold uppercase tracking-wider text-navy/40 text-center">Qty</div>
-          <div className="w-4 shrink-0" />
-          <div className="w-20 text-[10px] font-bold uppercase tracking-wider text-navy/40 text-right">Watts</div>
-          <div className="w-5 shrink-0" />
-          <div className="w-16 text-[10px] font-bold uppercase tracking-wider text-navy/40 text-right">Hrs/Day</div>
-          <div className="w-5 shrink-0" />
-        </div>
+        {/* ══════════════════════════════════════════════════════════════════
+            MODE 2 — By kWh Usage
+        ══════════════════════════════════════════════════════════════════ */}
+        {mode === "kwh" && (
+          <div className="space-y-6">
+            {/* Section header */}
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-amber/10 rounded-xl flex items-center justify-center shrink-0">
+                <BarChart2 className="w-5 h-5 text-amber" />
+              </div>
+              <div>
+                <h3 className="font-heading text-xl text-navy leading-tight">Known Energy Usage</h3>
+                <p className="text-xs text-navy/50 mt-0.5">Enter your measured or estimated daily consumption</p>
+              </div>
+            </div>
 
-        {/* Preset appliances */}
-        <div className="space-y-2">
-          {appliances.map((a) => (
-            <ApplianceRow
-              key={a.id}
-              appliance={a}
-              isCustom={false}
-              onChange={(updated) => updateAppliance(a.id, updated, false)}
-            />
-          ))}
-          {customAppliances.map((a) => (
-            <ApplianceRow
-              key={a.id}
-              appliance={a}
-              isCustom={true}
-              onChange={(updated) => updateAppliance(a.id, updated, true)}
-              onDelete={() => deleteCustomAppliance(a.id)}
-            />
-          ))}
-        </div>
+            {/* Daily kWh input */}
+            <div>
+              <label className="block text-[12px] font-bold text-navy/60 uppercase tracking-wider mb-2">
+                Daily Energy Usage (kWh)
+              </label>
+              <div className="relative">
+                <input
+                  type="number"
+                  min="0.1"
+                  step="0.1"
+                  value={dailyKwh}
+                  onChange={(e) => { setDailyKwh(e.target.value); setResult(null); }}
+                  placeholder="e.g. 2.5"
+                  className="w-full bg-navy/[0.03] border border-navy/10 rounded-xl py-3.5 pl-5 pr-16 text-navy text-lg font-bold focus:ring-2 focus:ring-amber focus:border-amber focus:bg-white transition-all outline-none"
+                  aria-label="Daily kWh usage"
+                />
+                <span className="absolute right-5 top-1/2 -translate-y-1/2 text-navy/40 font-bold text-sm">kWh</span>
+              </div>
+              <p className="mt-1.5 text-xs text-navy/40 flex items-start gap-1.5">
+                <Info className="w-3 h-3 shrink-0 mt-0.5" />
+                Check your battery monitor or RV energy meter for this number. Typical RVs use 1–5 kWh/day without AC, 5–15 kWh with AC.
+              </p>
+            </div>
 
-        {/* Add custom appliance */}
-        <button
-          onClick={addCustomAppliance}
-          className="flex items-center gap-2 text-sm font-bold text-amber hover:text-navy border border-dashed border-amber/40 hover:border-amber/80 rounded-xl px-4 py-3 w-full justify-center transition-all duration-200 hover:bg-amber/5"
-        >
-          <Plus className="w-4 h-4" />
-          Add Custom Appliance
-        </button>
+            {/* Usage Pattern */}
+            <div>
+              <label className="block text-[12px] font-bold text-navy/60 uppercase tracking-wider mb-2">
+                Usage Pattern
+              </label>
+              <div className="flex gap-2">
+                {[
+                  { key: "light",   label: "Light Use",   sub: "70% applied",  hint: "Occasional, not daily at full load" },
+                  { key: "regular", label: "Regular Use", sub: "100% applied", hint: "Daily consistent use" },
+                  { key: "heavy",   label: "Heavy Use",   sub: "120% applied", hint: "Hot climate, AC, high consumption" },
+                ].map(({ key, label, sub }) => (
+                  <button
+                    key={key}
+                    onClick={() => { setUsagePattern(key); setResult(null); }}
+                    className={`flex-1 py-2.5 px-2 rounded-xl border-2 transition-all duration-200 text-center ${
+                      usagePattern === key
+                        ? "bg-navy text-white border-navy shadow-md"
+                        : "bg-white border-navy/10 text-navy/60 hover:border-amber/40 hover:text-navy"
+                    }`}
+                  >
+                    <div className="text-sm font-bold leading-tight">{label}</div>
+                    <div className={`text-[10px] mt-0.5 ${usagePattern === key ? "text-white/70" : "text-navy/40"}`}>{sub}</div>
+                  </button>
+                ))}
+              </div>
+              <p className="mt-1.5 text-xs text-navy/40 flex items-start gap-1.5">
+                <Info className="w-3 h-3 shrink-0 mt-0.5" />
+                Adjusts your kWh figure to account for real-world variance in usage habits.
+              </p>
+            </div>
+          </div>
+        )}
 
-        {/* Live total */}
-        <div className="bg-navy/[0.03] border border-navy/8 rounded-xl px-4 py-3 flex items-center justify-between">
-          <span className="text-sm text-navy/60 font-medium">Estimated daily usage:</span>
-          <span className="text-lg font-bold text-navy">
-            {liveTotalWh.toLocaleString(undefined, { maximumFractionDigits: 0 })}
-            <span className="text-sm font-medium text-navy/50 ml-1">Wh/day</span>
-          </span>
-        </div>
-
-        {/* ── Configuration ── */}
+        {/* ══════════════════════════════════════════════════════════════════
+            SHARED CONFIGURATION
+        ══════════════════════════════════════════════════════════════════ */}
         <div className="border-t border-navy/8 pt-8 space-y-6">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-navy/5 rounded-xl flex items-center justify-center shrink-0">
@@ -429,7 +586,7 @@ export function RvSolarCalculator() {
             <div className="flex gap-3">
               {[
                 { key: "lifepo4",  label: "LiFePO4 / Lithium", dod: "80% DoD" },
-                { key: "leadacid", label: "Lead Acid / AGM",   dod: "50% DoD" },
+                { key: "leadacid", label: "Lead Acid / AGM",    dod: "50% DoD" },
               ].map(({ key, label, dod }) => (
                 <button
                   key={key}
@@ -447,23 +604,25 @@ export function RvSolarCalculator() {
             </div>
           </div>
 
-          {/* Days of Autonomy */}
+          {/* Days of Autonomy — free number input */}
           <div>
             <label className="block text-[12px] font-bold text-navy/60 uppercase tracking-wider mb-2">Days of Autonomy</label>
             <div className="relative">
               <input
+                id="days-of-autonomy"
                 type="number"
                 min="1"
+                max="30"
                 step="1"
                 value={daysOfAutonomy}
                 onChange={(e) => {
-                  const v = parseInt(e.target.value, 10);
-                  if (!isNaN(v) && v >= 1) { setDaysOfAutonomy(v); setResult(null); }
+                  const val = parseInt(e.target.value, 10);
+                  if (!isNaN(val) && val >= 1) { setDaysOfAutonomy(val); setResult(null); }
                 }}
-                className="w-full bg-navy/[0.03] border border-navy/10 rounded-xl py-3 pl-5 pr-16 text-navy text-lg font-bold focus:ring-2 focus:ring-amber focus:border-amber focus:bg-white transition-all outline-none"
+                className="w-full bg-navy/[0.03] border border-navy/10 rounded-xl py-3 pl-5 pr-20 text-navy text-lg font-bold focus:ring-2 focus:ring-amber focus:border-amber focus:bg-white transition-all outline-none"
                 aria-label="Days of autonomy"
               />
-              <span className="absolute right-5 top-1/2 -translate-y-1/2 text-navy/40 font-bold text-sm">
+              <span className="absolute right-5 top-1/2 -translate-y-1/2 text-navy/40 font-bold text-sm pointer-events-none">
                 {daysOfAutonomy === 1 ? "day" : "days"}
               </span>
             </div>
@@ -503,11 +662,22 @@ export function RvSolarCalculator() {
           {result ? (
             <div className="space-y-4">
 
-              {/* Output 1 — Daily Energy */}
+              {/* High usage warning (Mode 2 only) */}
+              {result.highUsageWarning && (
+                <div className="bg-amber/10 border border-amber/30 rounded-xl px-4 py-3 flex items-start gap-2">
+                  <AlertTriangle className="w-4 h-4 text-amber shrink-0 mt-0.5" />
+                  <p className="text-amber text-xs leading-relaxed font-medium">
+                    This is a very high daily usage. Double-check your number — typical RVs use 1–15 kWh/day.
+                  </p>
+                </div>
+              )}
+
+              {/* Output 1 — Daily Energy Use */}
               <ResultCard
                 icon={<Zap className="w-3.5 h-3.5 text-amber" />}
                 label="Daily Energy Use"
                 value={`${result.totalWh.toLocaleString(undefined, { maximumFractionDigits: 0 })} Wh/day`}
+                sub={`${(result.totalWh / 1000).toFixed(2)} kWh/day`}
               />
 
               {/* Output 2 — Solar Panels */}
@@ -523,7 +693,7 @@ export function RvSolarCalculator() {
                 icon={<BatteryCharging className="w-3.5 h-3.5 text-amber" />}
                 label="Recommended Battery Bank"
                 value={`${result.batteryAh.toLocaleString()}Ah / ${result.batteryKwh.toFixed(1)} kWh`}
-                sub={`At ${daysOfAutonomy} day${daysOfAutonomy > 1 ? "s" : ""} autonomy with ${batteryTypeLabel} battery`}
+                sub={`${daysOfAutonomy} day${daysOfAutonomy > 1 ? "s" : ""} autonomy · ${batteryTypeLabel}`}
               />
 
               {/* Output 4 — Charge Controller */}
@@ -545,7 +715,7 @@ export function RvSolarCalculator() {
                   <>
                     <p className="text-white font-bold text-2xl leading-tight">{result.recommendedControllerSize}A</p>
                     <p className="text-white/50 text-xs leading-relaxed">
-                      Based on {result.panelWatts}W ÷ {systemVoltage}V × 1.25 safety factor = {result.requiredControllerAmps.toFixed(1)}A required
+                      {result.panelWatts}W ÷ {systemVoltage}V × 1.25 = {result.requiredControllerAmps.toFixed(1)}A required
                     </p>
                   </>
                 )}
@@ -565,7 +735,6 @@ export function RvSolarCalculator() {
               <div className="bg-amber/10 border border-amber/20 rounded-xl px-4 py-3 flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-amber shrink-0" />
                 <p className="text-white/80 text-xs font-medium leading-relaxed">
-                  <span className="text-amber font-bold">{result.numberOfCheckedAppliances}</span> appliances ·{" "}
                   <span className="text-amber font-bold">{result.panelWatts}W</span> solar ·{" "}
                   <span className="text-amber font-bold">{result.batteryAh}Ah</span> battery ·{" "}
                   <span className="text-amber font-bold">
@@ -589,7 +758,7 @@ export function RvSolarCalculator() {
                 <Sun className="w-8 h-8 text-white opacity-50" />
               </div>
               <p className="text-white text-base max-w-[240px] leading-relaxed">
-                Configure your appliances and system settings, then click calculate to size your solar system.
+                Configure your inputs and click calculate to size your solar system.
               </p>
             </div>
           )}
@@ -599,3 +768,4 @@ export function RvSolarCalculator() {
     </div>
   );
 }
+
