@@ -37,7 +37,7 @@ export default function CalculatorsIndexPage() {
       title: "Solar Battery Calculator", 
       desc: "Size your off-grid or hybrid battery bank perfectly for your power needs.", 
       icon: Battery, 
-      href: "/calculators/solar-battery-calculator",
+      href: "/calculators/solar-battery-size-calculator",
       category: "Storage & Load",
     },
     { 

@@ -1,7 +1,7 @@
 import { BatteryCharging, AlertTriangle } from "lucide-react";
 
 export const calculatorData = {
-  slug: "solar-battery-calculator",
+  slug: "solar-battery-size-calculator",
   seoTitle: "Solar Battery Size Calculator — Find Your Ideal Storage Capacity",
   seoDescription: "Calculate the exact battery bank size needed for your solar system. Compare Lithium vs Lead-Acid and plan for grid outages.",
   

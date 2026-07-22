@@ -8,7 +8,7 @@ export function CalculatorsGridSection() {
       title: "Battery Calculator",
       description: "Size your battery bank correctly based on your daily energy consumption and desired autonomy.",
       icon: Battery,
-      href: "/calculators/solar-battery-calculator",
+      href: "/calculators/solar-battery-size-calculator",
       tag: "Popular",
     },
     {

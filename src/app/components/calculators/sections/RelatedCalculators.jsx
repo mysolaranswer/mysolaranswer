@@ -4,7 +4,7 @@ import { ArrowRight, Sun, Battery, PiggyBank } from "lucide-react";
 
 const defaultRelatedCalculators = [
   { title: "Panel Calculator", desc: "How many panels do you need to power your home?", icon: Sun, href: "/calculators/how-many-solar-panels" },
-  { title: "Battery Calculator", desc: "Size your off-grid or hybrid battery bank perfectly.", icon: Battery, href: "/calculators/solar-battery-calculator" },
+  { title: "Battery Calculator", desc: "Size your off-grid or hybrid battery bank perfectly.", icon: Battery, href: "/calculators/solar-battery-size-calculator" },
   { title: "Savings Calculator", desc: "Calculate your exact ROI and monthly savings.", icon: PiggyBank, href: "/calculators/solar-savings-calculator" },
 ];
 
